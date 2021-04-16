@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import taufiq.apps.wathcers.adapter.MovieAdapter
 import taufiq.apps.wathcers.databinding.FragmentMoviesBinding
 import taufiq.apps.wathcers.utils.Constant
@@ -40,7 +39,7 @@ class MoviesFragment : Fragment() {
         val movies = viewmodel.allMovies
         val adapter = MovieAdapter(movies) { id ->
             startActivity(Intent(requireContext(), DetailMoviesActivity::class.java).also {
-                it.putExtra(Constant.KEY_MOVIE,id)
+                it.putExtra(Constant.MOVIE_KEY,id)
             })
         }
         binding.rvMovies.adapter = adapter

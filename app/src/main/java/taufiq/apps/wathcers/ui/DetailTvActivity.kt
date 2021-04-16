@@ -5,19 +5,16 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import coil.load
-import taufiq.apps.wathcers.R
 import taufiq.apps.wathcers.data.DataModel
-import taufiq.apps.wathcers.databinding.ActivityDetailMoviesBinding
 import taufiq.apps.wathcers.databinding.ActivityDetailTvBinding
 import taufiq.apps.wathcers.utils.Constant
-import taufiq.apps.wathcers.viewmodel.MoviesViewModel
 import taufiq.apps.wathcers.viewmodel.TvViewModel
 
 class DetailTvActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailTvBinding
     private val viewmodel by viewModels<TvViewModel>()
     private val tvId by lazy {
-        intent.getIntExtra(Constant.KEY_TVSHOW,0)
+        intent.getIntExtra(Constant.TV_KEY,0)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

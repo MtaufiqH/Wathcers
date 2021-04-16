@@ -16,10 +16,10 @@ class DetailMoviesActivity : AppCompatActivity() {
     private val viewmodel by viewModels<MoviesViewModel>()
 
     private val movieId by lazy {
-        intent.getIntExtra(Constant.KEY_MOVIE, 0)
+        intent.getIntExtra(Constant.MOVIE_KEY, 0)
     }
     private val tvId by lazy {
-        intent.getIntExtra(Constant.KEY_TVSHOW, 0)
+        intent.getIntExtra(Constant.TV_KEY, 0)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

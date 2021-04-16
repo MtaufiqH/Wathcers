@@ -6,7 +6,7 @@ package taufiq.apps.wathcers.utils
  */
 class Constant {
     companion object{
-        const val KEY_MOVIE = "KEY_MOVIE"
-        const val KEY_TVSHOW = "KEY_TVSHOW"
+        const val MOVIE_KEY = "KEY_MOVIE"
+        const val TV_KEY = "KEY_TVSHOW"
     }
 }
