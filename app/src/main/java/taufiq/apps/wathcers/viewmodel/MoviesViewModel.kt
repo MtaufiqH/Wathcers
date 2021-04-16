@@ -11,5 +11,6 @@ import taufiq.apps.wathcers.data.DataSourceDummy
 class MoviesViewModel : ViewModel() {
 
     val allMovies : List<DataModel> = DataSourceDummy.getAllPopularMovies()
+    fun getMoviesById(id: Int) : DataModel?  =  DataSourceDummy.getMovie(id)
 
 }

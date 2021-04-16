@@ -1,14 +1,17 @@
 package taufiq.apps.wathcers.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import taufiq.apps.wathcers.adapter.MovieAdapter
 import taufiq.apps.wathcers.databinding.FragmentMoviesBinding
+import taufiq.apps.wathcers.utils.Constant
 import taufiq.apps.wathcers.viewmodel.MoviesViewModel
 
 /**
@@ -36,9 +39,11 @@ class MoviesFragment : Fragment() {
 
         val movies = viewmodel.allMovies
         val adapter = MovieAdapter(movies) { id ->
-
+            startActivity(Intent(requireContext(), DetailMoviesActivity::class.java).also {
+                it.putExtra(Constant.KEY_MOVIE,id)
+            })
         }
         binding.rvMovies.adapter = adapter
-        binding.rvMovies.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvMovies.layoutManager = GridLayoutManager(requireContext(),2)
     }
 }

@@ -3,4 +3,7 @@
     <string name="tab_text_1">Movie</string>
     <string name="tab_text_2">Tv Show</string>
     <string name="movie_image">movie image</string>
+    <string name="overview">Overview</string>
+    <string name="book_now">Book now!</string>
+    <string name="year">Year</string>
 </resources>

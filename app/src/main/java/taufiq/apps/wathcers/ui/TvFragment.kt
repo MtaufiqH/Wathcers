@@ -1,16 +1,19 @@
 package taufiq.apps.wathcers.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import taufiq.apps.wathcers.R
 import taufiq.apps.wathcers.adapter.MovieAdapter
 import taufiq.apps.wathcers.databinding.FragmentMoviesBinding
 import taufiq.apps.wathcers.databinding.FragmentTvBinding
+import taufiq.apps.wathcers.utils.Constant
 import taufiq.apps.wathcers.viewmodel.TvViewModel
 
 /**
@@ -34,9 +37,13 @@ class TvFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val data = viewmodel.allPopularTvShow
-        val adapter = MovieAdapter(data) {}
+        val adapter = MovieAdapter(data) { tvId ->
+            startActivity(Intent(requireContext(), DetailTvActivity::class.java).also {
+                it.putExtra(Constant.KEY_TVSHOW,tvId)
+            })
+        }
         binding.rvTvShow.adapter = adapter
-        binding.rvTvShow.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvTvShow.layoutManager = GridLayoutManager(requireContext(),2)
     }
 
 }

@@ -1,6 +1,7 @@
 package taufiq.apps.wathcers.viewmodel
 
 import androidx.lifecycle.ViewModel
+import taufiq.apps.wathcers.data.DataModel
 import taufiq.apps.wathcers.data.DataSourceDummy
 
 /**
@@ -10,4 +11,7 @@ import taufiq.apps.wathcers.data.DataSourceDummy
 class TvViewModel : ViewModel() {
 
     val allPopularTvShow = DataSourceDummy.getAllPopularTvShow()
+    fun getTvById(id: Int) : DataModel? {
+        return DataSourceDummy.getTv(id)
+    }
 }

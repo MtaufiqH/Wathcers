@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import taufiq.apps.wathcers.data.DataModel
 import taufiq.apps.wathcers.databinding.MovieItemRowBinding
-import taufiq.apps.wathcers.utils.Constant.Companion.image_path
 
 /**
  * Created By Taufiq on 4/16/2021.
@@ -20,10 +19,8 @@ class MovieAdapter(private val itemData: List<DataModel>, private val listener: 
         RecyclerView.ViewHolder(view.root) {
         fun bind(data: DataModel, listener: (Int) -> Unit) {
             view.apply {
-                tvTitle.text = data.title
-                tvOverview.text = data.description
-                ivPoster.load(data.image)
-                view.setOnClickListener {
+                ivPoster.load(data.image.toString())
+                view.root.setOnClickListener {
                     listener.invoke(data.id ?: 0)
                 }
             }
