@@ -3,7 +3,7 @@ package taufiq.apps.wathcers.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
 import taufiq.apps.wathcers.data.DataModel
 import taufiq.apps.wathcers.databinding.MovieItemRowBinding
 import taufiq.apps.wathcers.utils.Constant.Companion.image_path
@@ -16,13 +16,16 @@ class MovieAdapter(private val itemData: List<DataModel>, private val listener: 
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
 
-    inner class MovieViewHolder(val view: MovieItemRowBinding) :
+    inner class MovieViewHolder(private val view: MovieItemRowBinding) :
         RecyclerView.ViewHolder(view.root) {
         fun bind(data: DataModel, listener: (Int) -> Unit) {
             view.apply {
                 tvTitle.text = data.title
                 tvOverview.text = data.description
-                Glide.with(view.context).load(image_path + data.image).into(ivPoster)
+                ivPoster.load(data.image)
+                view.setOnClickListener {
+                    listener.invoke(data.id ?: 0)
+                }
             }
         }
 
