@@ -1,10 +1,7 @@
 package taufiq.apps.wathcers.ui
 
 import android.os.Bundle
-import com.google.android.material.tabs.TabLayout
-import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import taufiq.apps.wathcers.R
 import taufiq.apps.wathcers.databinding.ActivityMainBinding
 import taufiq.apps.wathcers.utils.SectionsPagerAdapter
 

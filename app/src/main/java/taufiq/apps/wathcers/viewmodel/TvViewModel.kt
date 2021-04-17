@@ -11,7 +11,7 @@ import taufiq.apps.wathcers.data.DataSourceDummy
 class TvViewModel : ViewModel() {
 
     val allPopularTvShow = DataSourceDummy.getAllPopularTvShow()
-    fun getTvById(id: Int) : DataModel? {
+    fun getTvById(id: Int): DataModel? {
         return DataSourceDummy.getTv(id)
     }
 }

@@ -39,10 +39,10 @@ class MoviesFragment : Fragment() {
         val movies = viewmodel.allMovies
         val adapter = MovieAdapter(movies) { id ->
             startActivity(Intent(requireContext(), DetailMoviesActivity::class.java).also {
-                it.putExtra(Constant.MOVIE_KEY,id)
+                it.putExtra(Constant.MOVIE_KEY, id)
             })
         }
         binding.rvMovies.adapter = adapter
-        binding.rvMovies.layoutManager = GridLayoutManager(requireContext(),2)
+        binding.rvMovies.layoutManager = GridLayoutManager(requireContext(), 2)
     }
 }

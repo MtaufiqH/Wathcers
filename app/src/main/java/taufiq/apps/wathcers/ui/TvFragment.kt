@@ -26,7 +26,7 @@ class TvFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentTvBinding.inflate(inflater,container,false)
+        binding = FragmentTvBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,11 +36,11 @@ class TvFragment : Fragment() {
         val data = viewmodel.allPopularTvShow
         val adapter = MovieAdapter(data) { tvId ->
             startActivity(Intent(requireContext(), DetailTvActivity::class.java).also {
-                it.putExtra(Constant.TV_KEY,tvId)
+                it.putExtra(Constant.TV_KEY, tvId)
             })
         }
         binding.rvTvShow.adapter = adapter
-        binding.rvTvShow.layoutManager = GridLayoutManager(requireContext(),2)
+        binding.rvTvShow.layoutManager = GridLayoutManager(requireContext(), 2)
     }
 
 }

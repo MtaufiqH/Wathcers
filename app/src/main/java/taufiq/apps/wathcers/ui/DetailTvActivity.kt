@@ -1,9 +1,9 @@
 package taufiq.apps.wathcers.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import taufiq.apps.wathcers.data.DataModel
 import taufiq.apps.wathcers.databinding.ActivityDetailTvBinding
@@ -14,7 +14,7 @@ class DetailTvActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailTvBinding
     private val viewmodel by viewModels<TvViewModel>()
     private val tvId by lazy {
-        intent.getIntExtra(Constant.TV_KEY,0)
+        intent.getIntExtra(Constant.TV_KEY, 0)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,10 +29,10 @@ class DetailTvActivity : AppCompatActivity() {
     private fun bindData(data: DataModel) {
         binding.apply {
             ivPosterDetailTv.load(data.image)
-            tvMovieTitle.text = data.title
-            tvMovieOverview.text = data.description
-            tvYear.text = data.date
-            btnBook.setOnClickListener {
+            tvMovieTitleTv.text = data.title
+            tvMovieOverviewTv.text = data.description
+            tvYearTv.text = data.date
+            btnBookTv.setOnClickListener {
                 Toast.makeText(
                     this@DetailTvActivity,
                     "Thank your for booking",
