@@ -21,7 +21,8 @@ class MoviesFragment : Fragment() {
 
     lateinit var binding: FragmentMoviesBinding
 
-    private val viewmodel by viewModels<MoviesViewModel>()
+    private val viewModel by viewModels<MoviesViewModel>()
+    private val adapter by lazy { MovieAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,14 +36,17 @@ class MoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val movies = viewModel.allMovies
+        adapter.setData(movies)
+        binding.rvMovies.adapter = adapter
+        binding.rvMovies.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        val movies = viewmodel.allMovies
-        val adapter = MovieAdapter(movies) { id ->
+        adapter.itemClickListener = {
             startActivity(Intent(requireContext(), DetailMoviesActivity::class.java).also {
                 it.putExtra(Constant.MOVIE_KEY, id)
             })
         }
-        binding.rvMovies.adapter = adapter
-        binding.rvMovies.layoutManager = GridLayoutManager(requireContext(), 2)
+
     }
+
 }
