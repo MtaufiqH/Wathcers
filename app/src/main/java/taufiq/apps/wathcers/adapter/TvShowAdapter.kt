@@ -4,6 +4,7 @@ import coil.load
 import taufiq.apps.wathcers.R
 import taufiq.apps.wathcers.data.DataModel
 import taufiq.apps.wathcers.data.response.movies.MovieResult
+import taufiq.apps.wathcers.data.response.movies.tvs.TvShowResult
 import taufiq.apps.wathcers.databinding.MovieItemRowBinding
 import taufiq.apps.wathcers.utils.BaseAdapter
 import taufiq.apps.wathcers.utils.Constant
@@ -12,13 +13,13 @@ import taufiq.apps.wathcers.utils.Constant
  * Created By Taufiq on 4/16/2021.
  *
  */
-class MovieAdapter : BaseAdapter<MovieResult>(R.layout.movie_item_row) {
+class TvShowAdapter : BaseAdapter<TvShowResult>(R.layout.movie_item_row) {
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        val movies = data[position]
+        val tvShow = data[position]
         val binding = MovieItemRowBinding.bind(holder.itemView)
         with(binding) {
-            ivPoster.load(Constant.IMAGE_PATH  + movies.posterPath )
-            this.root.setOnClickListener { itemClickListener?.invoke(movies) }
+            ivPoster.load(Constant.IMAGE_PATH  + tvShow.posterPath )
+            this.root.setOnClickListener { itemClickListener?.invoke(tvShow) }
         }
 
     }
