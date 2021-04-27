@@ -22,7 +22,7 @@ class DetailTvActivity : AppCompatActivity() {
         binding = ActivityDetailTvBinding.inflate(layoutInflater).also {
             setContentView(it.root)
         }
-        viewmodel.getTvById(tvId)?.let { bindData(it) }
+//        viewmodel.getTvById(tvId)?.let { bindData(it) }
 
     }
 

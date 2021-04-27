@@ -19,7 +19,7 @@ import javax.inject.Singleton
  *
  */
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 class AppModul {
 
     @Singleton

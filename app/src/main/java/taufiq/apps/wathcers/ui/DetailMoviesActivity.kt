@@ -26,7 +26,7 @@ class DetailMoviesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailMoviesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewmodel.getMoviesById(movieId)?.let { bindData(it) }
+//        viewmodel.getMoviesById(movieId)?.let { bindData(it) }
     }
 
     private fun bindData(data: DataModel) {

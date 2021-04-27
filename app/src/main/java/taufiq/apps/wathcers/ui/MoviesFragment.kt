@@ -2,6 +2,7 @@ package taufiq.apps.wathcers.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +24,9 @@ class MoviesFragment : BaseFragment() {
 
     lateinit var binding: FragmentMoviesBinding
     private val viewModel by viewModels<MoviesViewModel>()
-    private val adapter by lazy { MovieAdapter() }
+    private val adapter by lazy {
+        MovieAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,8 +40,6 @@ class MoviesFragment : BaseFragment() {
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.rvMovies.adapter = adapter
-        binding.rvMovies.layoutManager = GridLayoutManager(requireContext(), 2)
-
         adapter.itemClickListener = {
             startActivity(Intent(requireContext(), DetailMoviesActivity::class.java).also {
                 // TODO: add PutExtra to the detail
@@ -49,8 +50,7 @@ class MoviesFragment : BaseFragment() {
     override fun observableInit() {
         viewModel.getMovies(Constant.TMBD_API_KEY)
         viewModel.movieData.observe(viewLifecycleOwner) {
-            if (it != null) adapter.setData(it)
+            adapter.setData(it)
         }
     }
-
 }

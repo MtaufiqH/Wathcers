@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import taufiq.apps.wathcers.adapter.MovieAdapter
 import taufiq.apps.wathcers.adapter.TvShowAdapter
 import taufiq.apps.wathcers.databinding.FragmentTvBinding
 import taufiq.apps.wathcers.utils.BaseFragment
@@ -48,7 +46,10 @@ class TvFragment : BaseFragment() {
     }
 
     override fun observableInit() {
-        TODO("Not yet implemented")
+        viewModel.getTvShow(Constant.TMBD_API_KEY)
+        viewModel.tvShowData.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) adapter.setData(it)
+        }
     }
 
 
