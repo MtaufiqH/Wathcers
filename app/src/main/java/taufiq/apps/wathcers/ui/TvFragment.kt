@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import taufiq.apps.wathcers.adapter.MovieAdapter
+import taufiq.apps.wathcers.adapter.TvShowAdapter
 import taufiq.apps.wathcers.databinding.FragmentTvBinding
+import taufiq.apps.wathcers.utils.BaseFragment
 import taufiq.apps.wathcers.utils.Constant
 import taufiq.apps.wathcers.viewmodel.TvViewModel
 
@@ -17,9 +20,13 @@ import taufiq.apps.wathcers.viewmodel.TvViewModel
  * Created By Taufiq on 4/15/2021.
  *
  */
-class TvFragment : Fragment() {
+@AndroidEntryPoint
+class TvFragment : BaseFragment() {
     lateinit var binding: FragmentTvBinding
-    private val viewmodel by viewModels<TvViewModel>()
+    private val viewModel by viewModels<TvViewModel>()
+    private val adapter by lazy {
+        TvShowAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,17 +37,19 @@ class TvFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val data = viewmodel.allPopularTvShow
-        val adapter = MovieAdapter(data) { tvId ->
-            startActivity(Intent(requireContext(), DetailTvActivity::class.java).also {
-                it.putExtra(Constant.TV_KEY, tvId)
-            })
-        }
+    override fun initView(savedInstanceState: Bundle?) {
         binding.rvTvShow.adapter = adapter
         binding.rvTvShow.layoutManager = GridLayoutManager(requireContext(), 2)
+        adapter.itemClickListener = {
+            startActivity(Intent(requireContext(), DetailMoviesActivity::class.java).also {
+                // TODO: add PutExtra to the
+            })
+        }
     }
+
+    override fun observableInit() {
+        TODO("Not yet implemented")
+    }
+
 
 }

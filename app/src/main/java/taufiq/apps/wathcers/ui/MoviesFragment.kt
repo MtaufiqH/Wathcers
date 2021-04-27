@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import taufiq.apps.wathcers.adapter.MovieAdapter
 import taufiq.apps.wathcers.databinding.FragmentMoviesBinding
+import taufiq.apps.wathcers.utils.BaseFragment
 import taufiq.apps.wathcers.utils.Constant
 import taufiq.apps.wathcers.viewmodel.MoviesViewModel
 
@@ -17,10 +18,10 @@ import taufiq.apps.wathcers.viewmodel.MoviesViewModel
  * Created By Taufiq on 4/15/2021.
  *
  */
-class MoviesFragment : Fragment() {
+@AndroidEntryPoint
+class MoviesFragment : BaseFragment() {
 
     lateinit var binding: FragmentMoviesBinding
-
     private val viewModel by viewModels<MoviesViewModel>()
     private val adapter by lazy { MovieAdapter() }
 
@@ -34,19 +35,22 @@ class MoviesFragment : Fragment() {
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val movies = viewModel.allMovies
-        adapter.setData(movies)
+    override fun initView(savedInstanceState: Bundle?) {
         binding.rvMovies.adapter = adapter
         binding.rvMovies.layoutManager = GridLayoutManager(requireContext(), 2)
 
         adapter.itemClickListener = {
             startActivity(Intent(requireContext(), DetailMoviesActivity::class.java).also {
-                it.putExtra(Constant.MOVIE_KEY, id)
+                // TODO: add PutExtra to the detail
             })
         }
+    }
 
+    override fun observableInit() {
+        viewModel.getMovies(Constant.TMBD_API_KEY)
+        viewModel.movieData.observe(viewLifecycleOwner) {
+            if (it != null) adapter.setData(it)
+        }
     }
 
 }

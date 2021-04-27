@@ -2,9 +2,11 @@ package taufiq.apps.wathcers.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 import taufiq.apps.wathcers.databinding.ActivityMainBinding
 import taufiq.apps.wathcers.utils.SectionsPagerAdapter
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
