@@ -8,12 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import taufiq.apps.wathcers.adapter.MovieAdapter
+import taufiq.apps.wathcers.adapter.TvShowAdapter
 import taufiq.apps.wathcers.databinding.FragmentMoviesBinding
 import taufiq.apps.wathcers.utils.BaseFragment
 import taufiq.apps.wathcers.utils.Constant
 import taufiq.apps.wathcers.viewmodel.MoviesViewModel
+import taufiq.apps.wathcers.viewmodel.TvViewModel
 
 /**
  * Created By Taufiq on 4/15/2021.
@@ -39,6 +42,7 @@ class MoviesFragment : BaseFragment() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        binding.rvMovies.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvMovies.adapter = adapter
         adapter.itemClickListener = {
             startActivity(Intent(requireContext(), DetailMoviesActivity::class.java).also {
@@ -49,8 +53,11 @@ class MoviesFragment : BaseFragment() {
 
     override fun observableInit() {
         viewModel.getMovies(Constant.TMBD_API_KEY)
-        viewModel.movieData.observe(viewLifecycleOwner) {
-            adapter.setData(it)
+        viewModel.movieData.observe(viewLifecycleOwner) { movies ->
+            if (movies.isNotEmpty()) {
+               adapter.setData(movies)
+                Log.d("MY_LOG", "observableInit: $movies")
+            }
         }
     }
 }

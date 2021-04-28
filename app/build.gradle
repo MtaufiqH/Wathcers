@@ -52,6 +52,7 @@ dependencies {
     implementation("io.coil-kt:coil:1.2.0")
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
     implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'

@@ -8,9 +8,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
-import taufiq.apps.wathcers.data.DataModel
-import taufiq.apps.wathcers.data.DataSourceDummy
-import taufiq.apps.wathcers.data.response.movies.tvs.TvShowResult
+import taufiq.apps.wathcers.data.TvShowResult
 import taufiq.apps.wathcers.repo.MovieRepositoryImpl
 import javax.inject.Inject
 
@@ -19,7 +17,7 @@ import javax.inject.Inject
  *
  */
 @HiltViewModel
-class TvViewModel@Inject constructor(private val repository: MovieRepositoryImpl) : ViewModel() {
+class TvViewModel @Inject constructor(private val repository: MovieRepositoryImpl) : ViewModel() {
 
     private val _tvShowData = MutableLiveData<List<TvShowResult>>()
     val tvShowData: LiveData<List<TvShowResult>> get() = _tvShowData
@@ -27,8 +25,8 @@ class TvViewModel@Inject constructor(private val repository: MovieRepositoryImpl
     fun getTvShow(key: String) = viewModelScope.launch {
         try {
             val result = repository.getTvShow(key)
-            if (result.isSuccessful && result != null) _tvShowData.postValue(result.body()?.results) else
-                Log.d("Request Tv Show", "getTvShow:  ${result.message()}")
+            if (result.isSuccessful && result != null) _tvShowData.postValue(result.body()?.results)
+            else Log.d("Request Tv Show", "getTvShow:  ${result.message()}")
         } catch (e: Exception) {
             Log.d("EXCEPTION", "getTvShow result: ${e.message} ")
         } catch (httpException: HttpException) {

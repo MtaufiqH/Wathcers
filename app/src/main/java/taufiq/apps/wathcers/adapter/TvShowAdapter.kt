@@ -2,9 +2,7 @@ package taufiq.apps.wathcers.adapter
 
 import coil.load
 import taufiq.apps.wathcers.R
-import taufiq.apps.wathcers.data.DataModel
-import taufiq.apps.wathcers.data.response.movies.MovieResult
-import taufiq.apps.wathcers.data.response.movies.tvs.TvShowResult
+import taufiq.apps.wathcers.data.TvShowResult
 import taufiq.apps.wathcers.databinding.MovieItemRowBinding
 import taufiq.apps.wathcers.utils.BaseAdapter
 import taufiq.apps.wathcers.utils.Constant

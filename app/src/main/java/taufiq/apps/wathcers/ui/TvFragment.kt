@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import taufiq.apps.wathcers.adapter.MovieAdapter
 import taufiq.apps.wathcers.adapter.TvShowAdapter
 import taufiq.apps.wathcers.databinding.FragmentTvBinding
 import taufiq.apps.wathcers.utils.BaseFragment
 import taufiq.apps.wathcers.utils.Constant
+import taufiq.apps.wathcers.viewmodel.MoviesViewModel
 import taufiq.apps.wathcers.viewmodel.TvViewModel
 
 /**

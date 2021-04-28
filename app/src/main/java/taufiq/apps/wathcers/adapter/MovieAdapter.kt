@@ -2,8 +2,7 @@ package taufiq.apps.wathcers.adapter
 
 import coil.load
 import taufiq.apps.wathcers.R
-import taufiq.apps.wathcers.data.DataModel
-import taufiq.apps.wathcers.data.response.movies.MovieResult
+import taufiq.apps.wathcers.data.MovieResult
 import taufiq.apps.wathcers.databinding.MovieItemRowBinding
 import taufiq.apps.wathcers.utils.BaseAdapter
 import taufiq.apps.wathcers.utils.Constant
@@ -17,7 +16,7 @@ class MovieAdapter : BaseAdapter<MovieResult>(R.layout.movie_item_row) {
         val movies = data[position]
         val binding = MovieItemRowBinding.bind(holder.itemView)
         with(binding) {
-            ivPoster.load(Constant.IMAGE_PATH  + movies.posterPath )
+            ivPoster.load("${Constant.IMAGE_PATH}${movies.posterPath}")
             this.root.setOnClickListener { itemClickListener?.invoke(movies) }
         }
 

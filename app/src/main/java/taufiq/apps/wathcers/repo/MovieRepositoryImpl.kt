@@ -1,8 +1,8 @@
 package taufiq.apps.wathcers.repo
 
 import retrofit2.Response
-import taufiq.apps.wathcers.data.response.movies.PopularMovieReponse
-import taufiq.apps.wathcers.data.response.movies.tvs.PopularTvShowResponse
+import taufiq.apps.wathcers.data.PopularMovieResult
+import taufiq.apps.wathcers.data.PopularTvShowResponse
 import taufiq.apps.wathcers.network.MovieClientRequest
 import javax.inject.Inject
 
@@ -12,11 +12,15 @@ import javax.inject.Inject
  */
 class MovieRepositoryImpl @Inject constructor(private val service: MovieClientRequest) :
     MovieRepository {
-    override suspend fun getPopularMovies(key: String): Response<PopularMovieReponse> {
+    override suspend fun getPopularMovies(key: String): Response<PopularMovieResult> {
         return service.getAllPopularMovies(key)
     }
 
     override suspend fun getTvShow(key: String): Response<PopularTvShowResponse> {
         return service.getAllPopularTvShow(key)
     }
+
+//    override suspend fun getNowPlaying(key: String): Response<NowPlayingResponse> {
+//        return service.getNowPlayingMovies(key)
+//    }
 }

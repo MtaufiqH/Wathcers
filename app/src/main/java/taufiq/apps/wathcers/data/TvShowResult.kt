@@ -1,4 +1,4 @@
-package taufiq.apps.wathcers.data.response.movies.tvs
+package taufiq.apps.wathcers.data
 
 
 import com.google.gson.annotations.SerializedName
