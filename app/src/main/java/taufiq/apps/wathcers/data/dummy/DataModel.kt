@@ -1,4 +1,4 @@
-package taufiq.apps.wathcers.data
+package taufiq.apps.wathcers.data.dummy
 
 /**
  * Created By Taufiq on 4/15/2021.
