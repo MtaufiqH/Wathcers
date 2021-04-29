@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
-import taufiq.apps.wathcers.data.DataModel
+import taufiq.apps.wathcers.data.dummy.DataModel
 import taufiq.apps.wathcers.databinding.ActivityDetailMoviesBinding
 import taufiq.apps.wathcers.utils.Constant
 import taufiq.apps.wathcers.viewmodel.MoviesViewModel

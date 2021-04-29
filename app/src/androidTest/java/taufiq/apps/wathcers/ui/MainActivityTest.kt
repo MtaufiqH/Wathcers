@@ -10,7 +10,7 @@ import androidx.test.rule.ActivityTestRule
 import org.junit.Rule
 import org.junit.Test
 import taufiq.apps.wathcers.R
-import taufiq.apps.wathcers.data.DataSourceDummy
+import taufiq.apps.wathcers.data.dummy.DataSourceDummy
 
 
 /**
@@ -40,12 +40,12 @@ class MainActivityTest {
                 0, click()
             )
         )
-        onView(withId(R.id.tv_movie_title)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_movie_title)).check(matches(withText(movies[0].title)))
-        onView(withId(R.id.tv_movie_overview)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_movie_overview)).check(matches(withText(movies[0].description)))
-        onView(withId(R.id.tv_year)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_year)).check(matches(withText(movies[0].date)))
+        onView(withId(R.id.tv_movie_title_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_movie_title_tv)).check(matches(withText(movies[0].title)))
+        onView(withId(R.id.tv_movie_overview_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_movie_overview_tv)).check(matches(withText(movies[0].description)))
+        onView(withId(R.id.tv_date_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_date_tv)).check(matches(withText(movies[0].date)))
         onView(withId(R.id.btn_book)).perform(click())
     }
 

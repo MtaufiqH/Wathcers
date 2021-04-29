@@ -4,7 +4,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
-import taufiq.apps.wathcers.data.DataModel
+import taufiq.apps.wathcers.data.dummy.DataModel
 
 /**
  * Created By Taufiq on 4/17/2021.
