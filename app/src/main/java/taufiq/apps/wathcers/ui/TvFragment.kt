@@ -8,12 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import taufiq.apps.wathcers.adapter.MovieAdapter
 import taufiq.apps.wathcers.adapter.TvShowAdapter
 import taufiq.apps.wathcers.databinding.FragmentTvBinding
 import taufiq.apps.wathcers.utils.BaseFragment
 import taufiq.apps.wathcers.utils.Constant
-import taufiq.apps.wathcers.viewmodel.MoviesViewModel
 import taufiq.apps.wathcers.viewmodel.TvViewModel
 
 /**
@@ -40,9 +38,9 @@ class TvFragment : BaseFragment() {
     override fun initView(savedInstanceState: Bundle?) {
         binding.rvTvShow.adapter = adapter
         binding.rvTvShow.layoutManager = GridLayoutManager(requireContext(), 2)
-        adapter.itemClickListener = {
+        adapter.itemClickListener = { tvShow ->
             startActivity(Intent(requireContext(), DetailMoviesActivity::class.java).also {
-                // TODO: add PutExtra to the
+                it.putExtra(DetailTvActivity.TV_KEY_EXTRA, tvShow.id)
             })
         }
     }

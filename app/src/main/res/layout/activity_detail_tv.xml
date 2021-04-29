@@ -183,13 +183,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="88dp"
             android:backgroundTint="#F5FF5722"
             android:fontFamily="@font/montserrat_bold"
+            android:padding="16dp"
             android:text="@string/more_detail"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_released_status_tv" />
 

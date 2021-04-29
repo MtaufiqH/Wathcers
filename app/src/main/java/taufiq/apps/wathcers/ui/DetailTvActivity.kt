@@ -13,32 +13,22 @@ import taufiq.apps.wathcers.viewmodel.TvViewModel
 class DetailTvActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailTvBinding
     private val viewmodel by viewModels<TvViewModel>()
-    private val tvId by lazy {
-        intent.getIntExtra(Constant.TV_KEY, 0)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailTvBinding.inflate(layoutInflater).also {
             setContentView(it.root)
         }
-//        viewmodel.getTvById(tvId)?.let { bindData(it) }
 
     }
 
     private fun bindData(data: DataModel) {
         binding.apply {
-            ivPosterDetailTv.load(data.image)
-            tvMovieTitleTv.text = data.title
-            tvMovieOverviewTv.text = data.description
-            tvYearTv.text = data.date
-            btnBookTv.setOnClickListener {
-                Toast.makeText(
-                    this@DetailTvActivity,
-                    "Thank your for booking",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+
         }
+    }
+
+    companion object {
+        const val TV_KEY_EXTRA = "TV_KEY_EXTRA"
     }
 }

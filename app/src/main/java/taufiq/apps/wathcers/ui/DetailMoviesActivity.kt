@@ -14,34 +14,21 @@ class DetailMoviesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailMoviesBinding
     private val viewmodel by viewModels<MoviesViewModel>()
-
-    private val movieId by lazy {
-        intent.getIntExtra(Constant.MOVIE_KEY, 0)
-    }
-    private val tvId by lazy {
-        intent.getIntExtra(Constant.TV_KEY, 0)
+    val movieIntent by lazy {
+        intent.getIntExtra(MOVIE_KEY_EXTRA,0)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailMoviesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        viewmodel.getMoviesById(movieId)?.let { bindData(it) }
+
+
     }
 
-    private fun bindData(data: DataModel) {
-        binding.apply {
-            ivPosterDetail.load(data.image)
-            tvMovieTitle.text = data.title
-            tvMovieOverview.text = data.description
-            tvYear.text = data.date
-            btnBook.setOnClickListener {
-                Toast.makeText(
-                    this@DetailMoviesActivity,
-                    "Thank your for booking",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
+
+    companion object {
+        const val MOVIE_KEY_EXTRA = "MOVIE_KEY_EXTRA"
     }
+
 }
