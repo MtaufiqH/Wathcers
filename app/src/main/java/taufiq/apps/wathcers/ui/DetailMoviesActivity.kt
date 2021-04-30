@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import dagger.hilt.android.AndroidEntryPoint
 import taufiq.apps.wathcers.databinding.ActivityDetailMoviesBinding
 import taufiq.apps.wathcers.utils.Constant
@@ -51,7 +52,6 @@ class DetailMoviesActivity : AppCompatActivity() {
             }
         }
     }
-
 
     companion object {
         const val MOVIE_KEY_EXTRA = "MOVIE_KEY_EXTRA"

@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import taufiq.apps.wathcers.data.detailtv.DetailTvResponse
 import taufiq.apps.wathcers.repo.MovieRepositoryImpl
+import taufiq.apps.wathcers.utils.EspressoIdlingResource
 import javax.inject.Inject
 
 /**
@@ -17,21 +18,26 @@ import javax.inject.Inject
  *
  */
 @HiltViewModel
-class TvViewModelDetail @Inject constructor(private val repository: MovieRepositoryImpl) : ViewModel() {
+class TvViewModelDetail @Inject constructor(private val repository: MovieRepositoryImpl) :
+    ViewModel() {
 
     private val _tvShowDataDetail = MutableLiveData<DetailTvResponse>()
-    val tvShowDataDetail : LiveData<DetailTvResponse> get() = _tvShowDataDetail
+    val tvShowDataDetail: LiveData<DetailTvResponse> get() = _tvShowDataDetail
 
 
-    fun getTvShowDetail(id: Int, key: String) = viewModelScope.launch {
-        try {
-            val result = repository.getDetailTv(id,key)
-            if (result.isSuccessful && result != null) _tvShowDataDetail.postValue(result.body())
-            else Log.d("Request Tv Show", "getTvShow:  ${result.message()}")
-        } catch (e: Exception) {
-            Log.d("EXCEPTION", "getTvShow result: ${e.message} ")
-        } catch (httpException: HttpException) {
-            Log.d("HttpException", "getTvShow: result ${httpException.message()}")
+    fun getTvShowDetail(id: Int, key: String) {
+        EspressoIdlingResource.increment()
+        viewModelScope.launch {
+            try {
+                val result = repository.getDetailTv(id, key)
+                if (result.isSuccessful && result != null) _tvShowDataDetail.postValue(result.body())
+                else Log.d("Request Tv Show", "getTvShow:  ${result.message()}")
+                EspressoIdlingResource.decrement()
+            } catch (e: Exception) {
+                Log.d("EXCEPTION", "getTvShow result: ${e.message} ")
+            } catch (httpException: HttpException) {
+                Log.d("HttpException", "getTvShow: result ${httpException.message()}")
+            }
         }
     }
 }

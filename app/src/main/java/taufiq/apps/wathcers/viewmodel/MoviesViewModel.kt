@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import taufiq.apps.wathcers.data.MovieResult
 import taufiq.apps.wathcers.repo.MovieRepositoryImpl
+import taufiq.apps.wathcers.utils.EspressoIdlingResource
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,20 +20,23 @@ class MoviesViewModel @Inject constructor(private val repository: MovieRepositor
     private val _movieData = MutableLiveData<List<MovieResult>>()
     val movieData: LiveData<List<MovieResult>> = _movieData
 
-    fun getMovies(key: String) = viewModelScope.launch {
-        try {
-            val result = repository.getPopularMovies(key)
-            if (result.isSuccessful) {
-                _movieData.postValue(result.body()?.results)
-                Log.d("Request", "getmovies:  ${result.body()?.results?.size}")
-            } else Log.d("Request movies", "getmovies:  ${result.message()}")
-        } catch (e: Exception) {
-            Log.d("EXCEPTION", "getMovies result: ${e.message} ")
-        } catch (httpException: HttpException) {
-            Log.d("HttpException", "getMovies: result ${httpException.message()}")
+    fun getMovies(key: String) {
+        EspressoIdlingResource.increment()
+        viewModelScope.launch {
+            try {
+                val result = repository.getPopularMovies(key)
+                if (result.isSuccessful) {
+                    _movieData.postValue(result.body()?.results)
+                    Log.d("Request", "getmovies:  ${result.body()?.results?.size}")
+                    EspressoIdlingResource.decrement()
+                } else Log.d("Request movies", "getmovies:  ${result.message()}")
+            } catch (e: Exception) {
+                Log.d("EXCEPTION", "getMovies result: ${e.message} ")
+            } catch (httpException: HttpException) {
+                Log.d("HttpException", "getMovies: result ${httpException.message()}")
+            }
+
         }
-
-
     }
 
 }
