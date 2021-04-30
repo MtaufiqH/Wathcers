@@ -13,7 +13,7 @@
         tools:context=".ui.DetailMoviesActivity">
 
         <ImageView
-            android:id="@+id/iv_backdrop_tv"
+            android:id="@+id/iv_backdrop"
             android:layout_width="match_parent"
             android:layout_height="320dp"
             android:contentDescription="@string/movie_image"
@@ -33,11 +33,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_backdrop_tv"
+            app:layout_constraintTop_toBottomOf="@+id/iv_backdrop"
             app:layout_constraintVertical_bias="0.259" />
 
         <TextView
-            android:id="@+id/tv_movie_title_tv"
+            android:id="@+id/tv_movie_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -45,12 +45,12 @@
             android:fontFamily="@font/montserrat_bold"
             android:textColor="@color/black"
             android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/movie_poster_tv"
+            app:layout_constraintStart_toEndOf="@+id/movie_poster"
             app:layout_constraintTop_toTopOf="@+id/view2"
             tools:text="Movie Title" />
 
         <TextView
-            android:id="@+id/tv_movie_overview_tv"
+            android:id="@+id/tv_movie_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -76,7 +76,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_movie_overview_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_movie_overview" />
 
         <TextView
             android:id="@+id/label_years2"
@@ -91,10 +91,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movie_poster_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/movie_poster" />
 
         <TextView
-            android:id="@+id/tv_date_tv"
+            android:id="@+id/tv_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -109,7 +109,7 @@
             tools:text="2021" />
 
         <ImageView
-            android:id="@+id/movie_poster_tv"
+            android:id="@+id/movie_poster"
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:layout_marginStart="16dp"
@@ -118,21 +118,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.061"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/iv_backdrop_tv"
+            app:layout_constraintTop_toTopOf="@+id/iv_backdrop"
             tools:srcCompat="@tools:sample/avatars"
             android:contentDescription="@string/movie_image" />
 
         <TextView
-            android:id="@+id/movie_genre_tv"
+            android:id="@+id/movie_genre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Genres"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/tv_movie_title_tv"
-            app:layout_constraintTop_toBottomOf="@+id/tv_movie_title_tv" />
+            app:layout_constraintStart_toStartOf="@+id/tv_movie_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movie_title" />
 
         <RatingBar
-            android:id="@+id/movie_rating_tv"
+            android:id="@+id/movie_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -144,8 +144,8 @@
             android:stepSize=".1"
             android:transformPivotX="0dp"
             android:transformPivotY="0dp"
-            app:layout_constraintStart_toEndOf="@+id/movie_poster_tv"
-            app:layout_constraintTop_toBottomOf="@+id/movie_genre_tv"
+            app:layout_constraintStart_toEndOf="@+id/movie_poster"
+            app:layout_constraintTop_toBottomOf="@+id/movie_genre"
             tools:rating="" />
 
         <TextView
@@ -162,11 +162,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_date_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_date" />
 
 
         <TextView
-            android:id="@+id/tv_released_status_tv"
+            android:id="@+id/tv_released_status"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -191,7 +191,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_released_status_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_released_status" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

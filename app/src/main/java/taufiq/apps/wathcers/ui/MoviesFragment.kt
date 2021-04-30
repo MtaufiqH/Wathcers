@@ -22,7 +22,7 @@ import taufiq.apps.wathcers.viewmodel.MoviesViewModel
 @AndroidEntryPoint
 class MoviesFragment : BaseFragment() {
 
-    lateinit var binding: FragmentMoviesBinding
+    private lateinit var binding: FragmentMoviesBinding
     private val viewModel by viewModels<MoviesViewModel>()
     private val adapter by lazy {
         MovieAdapter()

@@ -13,4 +13,5 @@
     <string name="genres">genres</string>
     <string name="summary">Summary</string>
     <string name="status">Status</string>
+    <string name="date_air">%s - %s</string>
 </resources>
