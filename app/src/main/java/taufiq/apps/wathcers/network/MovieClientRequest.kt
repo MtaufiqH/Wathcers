@@ -29,7 +29,7 @@ interface MovieClientRequest {
 
     @GET("tv/{tv_id}")
     suspend fun getTvDetail(
-        @Path("movie_id") movieId: Int,
+        @Path("tv_id") tvId: Int,
         @Query("api_key") key: String
     ): Response<DetailTvResponse>
 

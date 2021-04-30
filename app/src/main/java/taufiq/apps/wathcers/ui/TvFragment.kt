@@ -39,7 +39,7 @@ class TvFragment : BaseFragment() {
         binding.rvTvShow.adapter = adapter
         binding.rvTvShow.layoutManager = GridLayoutManager(requireContext(), 2)
         adapter.itemClickListener = { tvShow ->
-            startActivity(Intent(requireContext(), DetailMoviesActivity::class.java).also {
+            startActivity(Intent(requireContext(), DetailTvActivity::class.java).also {
                 it.putExtra(DetailTvActivity.TV_KEY_EXTRA, tvShow.id)
             })
         }

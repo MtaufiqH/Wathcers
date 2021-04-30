@@ -3,14 +3,15 @@ package taufiq.apps.wathcers.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
+import dagger.hilt.android.AndroidEntryPoint
 import taufiq.apps.wathcers.databinding.ActivityDetailMoviesBinding
 import taufiq.apps.wathcers.utils.Constant
 import taufiq.apps.wathcers.viewmodel.MoviesViewModelDetail
 
+@AndroidEntryPoint
 class DetailMoviesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailMoviesBinding
@@ -44,16 +45,8 @@ class DetailMoviesActivity : AppCompatActivity() {
                 tvDate.text = movies.releaseDate
                 tvReleasedStatus.text = movies.status
                 btnMore.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    intent.data = (Uri.parse(movies.homepage))
-                    if (intent.data != null) {
-                        Toast.makeText(
-                            this@DetailMoviesActivity,
-                            "Url not found",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else
-                        startActivity(intent)
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(movies.homepage))
+                    startActivity(intent)
                 }
             }
         }
