@@ -49,8 +49,7 @@ class MoviesFragment : BaseFragment() {
     }
 
     override fun observableInit() {
-        viewModel.getMovies(Constant.TMBD_API_KEY)
-        viewModel.movieData.observe(viewLifecycleOwner) { movies ->
+        viewModel.getMovies().observe(viewLifecycleOwner) { movies ->
             if (movies.isNotEmpty()) {
                 adapter.setData(movies)
                 Log.d("MY_LOG", "observableInit: $movies")

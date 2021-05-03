@@ -1,8 +1,8 @@
 package taufiq.apps.wathcers.repo
 
-import retrofit2.Response
-import taufiq.apps.wathcers.data.PopularMovieResult
-import taufiq.apps.wathcers.data.PopularTvShowResponse
+import androidx.lifecycle.LiveData
+import taufiq.apps.wathcers.data.MovieResult
+import taufiq.apps.wathcers.data.TvShowResult
 import taufiq.apps.wathcers.data.detailmovie.DetailMovieResponse
 import taufiq.apps.wathcers.data.detailtv.DetailTvResponse
 
@@ -11,8 +11,8 @@ import taufiq.apps.wathcers.data.detailtv.DetailTvResponse
  *
  */
 interface MovieRepository {
-    suspend fun getPopularMovies(key: String): Response<PopularMovieResult>
-    suspend fun getTvShow(key: String): Response<PopularTvShowResponse>
-    suspend fun getDetailMovie(id: Int, key: String) : Response<DetailMovieResponse>
-    suspend fun getDetailTv(id: Int, key: String) : Response<DetailTvResponse>
+    fun getPopularMovies(): LiveData<List<MovieResult>>
+    fun getTvShow(): LiveData<List<TvShowResult>>
+    fun getDetailMovie(id: Int): LiveData<DetailMovieResponse>
+    fun getDetailTv(id: Int): LiveData<DetailTvResponse>
 }
