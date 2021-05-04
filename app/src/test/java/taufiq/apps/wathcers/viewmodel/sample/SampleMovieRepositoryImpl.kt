@@ -1,4 +1,4 @@
-package taufiq.apps.wathcers.viewmodel
+package taufiq.apps.wathcers.viewmodel.sample
 
 import android.util.Log
 import androidx.lifecycle.LiveData

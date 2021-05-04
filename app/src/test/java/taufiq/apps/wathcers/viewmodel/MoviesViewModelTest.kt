@@ -1,15 +1,17 @@
 package taufiq.apps.wathcers.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
+import org.mockito.Mockito.`when`
+import taufiq.apps.wathcers.data.MovieResult
 import taufiq.apps.wathcers.repo.MovieRepositoryImpl
-import taufiq.apps.wathcers.utils.Constant
+import taufiq.apps.wathcers.viewmodel.sample.SampleData
 
 /**
  * Created By Taufiq on 5/3/2021.
@@ -19,12 +21,22 @@ class MoviesViewModelTest {
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
 
-    private lateinit var movieViewModel: MoviesViewModel
+    private var movieViewModel: MoviesViewModel? = null
+    private var data = Mockito.mock(MovieRepositoryImpl::class.java)
 
     @Before
     fun setUp() {
-        movieViewModel = MoviesViewModel(Mockito.mock(MovieRepositoryImpl::class.java))
+        movieViewModel = MoviesViewModel(data)
     }
 
+    @Test
+    fun `verify movie popular movie list`() {
+        val movies = MutableLiveData<List<MovieResult>>()
+        movies.value = SampleData.getSampleOfMovieList()
+        `when`(data.getPopularMovies()).thenReturn(movies)
+        val observer = Mockito.mock(Observer::class.java)
+        movieViewModel?.getMovies()?.observeForever(observer as Observer<List<MovieResult>>)
+        verify(data).getPopularMovies()
+    }
 
 }

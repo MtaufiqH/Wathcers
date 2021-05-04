@@ -1,4 +1,4 @@
-package taufiq.apps.wathcers.viewmodel
+package taufiq.apps.wathcers.viewmodel.sample
 
 import taufiq.apps.wathcers.data.MovieResult
 import taufiq.apps.wathcers.data.TvShowResult
@@ -12,9 +12,6 @@ import taufiq.apps.wathcers.data.detailtv.Genres
  *
  */
 object SampleData {
-
-
-    // MOVIE SAMPLE
     fun getSampleOfMovieList(): List<MovieResult> {
         return listOf(
             MovieResult(
