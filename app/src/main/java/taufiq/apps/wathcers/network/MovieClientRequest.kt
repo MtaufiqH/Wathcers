@@ -15,8 +15,10 @@ import taufiq.apps.wathcers.data.detailtv.DetailTvResponse
  */
 interface MovieClientRequest {
 
+
     @GET("movie/popular")
     suspend fun getAllPopularMovies(@Query("api_key") key: String): Response<PopularMovieResult>
+
 
     @GET("tv/popular")
     suspend fun getAllPopularTvShow(@Query("api_key") key: String): Response<PopularTvShowResponse>

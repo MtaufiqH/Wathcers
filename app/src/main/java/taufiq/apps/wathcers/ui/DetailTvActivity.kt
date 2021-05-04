@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
-import coil.transform.RoundedCornersTransformation
 import dagger.hilt.android.AndroidEntryPoint
 import taufiq.apps.wathcers.R
 import taufiq.apps.wathcers.databinding.ActivityDetailTvBinding
@@ -26,12 +25,11 @@ class DetailTvActivity : AppCompatActivity() {
 
         val idTv = intent.getIntExtra(TV_KEY_EXTRA, 0)
 
-        observeDataTv(idTv, Constant.TMBD_API_KEY)
+        observeDataTv(idTv)
     }
 
-    private fun observeDataTv(id: Int, key: String) {
-        tvViewModel.getTvShowDetail(id, key)
-        tvViewModel.tvShowDataDetail.observe(this) { tv ->
+    private fun observeDataTv(id: Int) {
+        tvViewModel.getTvShowDetail(id).observe(this) { tv ->
             binding.apply {
                 ivBackdropTv.load(IMAGE_PATH + tv.backdropPath)
                 moviePosterTv.load(IMAGE_PATH + tv.posterPath)
@@ -50,11 +48,11 @@ class DetailTvActivity : AppCompatActivity() {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(tv.homepage))
                     startActivity(intent)
                 }
+
             }
-
         }
-    }
 
+    }
 
     companion object {
         const val TV_KEY_EXTRA = "TV_KEY_EXTRA"

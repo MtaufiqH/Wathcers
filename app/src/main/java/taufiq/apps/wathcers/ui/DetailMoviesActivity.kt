@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
-import coil.transform.RoundedCornersTransformation
 import dagger.hilt.android.AndroidEntryPoint
 import taufiq.apps.wathcers.databinding.ActivityDetailMoviesBinding
 import taufiq.apps.wathcers.utils.Constant
@@ -26,13 +25,12 @@ class DetailMoviesActivity : AppCompatActivity() {
         binding = ActivityDetailMoviesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        observeMovieDetail(idMovie, Constant.TMBD_API_KEY)
+        observeMovieDetail(idMovie)
 
     }
 
-    private fun observeMovieDetail(id: Int, key: String) {
-        movieViewModel.getMovieDetail(id, key)
-        movieViewModel.movieDetailData.observe(this) { movies ->
+    private fun observeMovieDetail(id: Int) {
+        movieViewModel.getMovieDetail(id).observe(this) { movies ->
             with(binding) {
                 ivBackdrop.load(Constant.IMAGE_PATH + movies.backdropPath)
                 moviePoster.load(Constant.IMAGE_PATH + movies.posterPath)
@@ -51,6 +49,7 @@ class DetailMoviesActivity : AppCompatActivity() {
                 }
             }
         }
+
     }
 
     companion object {

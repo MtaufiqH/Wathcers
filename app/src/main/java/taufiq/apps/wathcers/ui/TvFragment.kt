@@ -46,11 +46,8 @@ class TvFragment : BaseFragment() {
     }
 
     override fun observableInit() {
-        viewModel.getTvShow(Constant.TMBD_API_KEY)
-        viewModel.tvShowData.observe(viewLifecycleOwner) {
+        viewModel.getTvShows().observe(viewLifecycleOwner){
             if (it.isNotEmpty()) adapter.setData(it)
         }
     }
-
-
 }

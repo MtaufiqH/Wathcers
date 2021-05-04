@@ -34,20 +34,6 @@ class MovieRepositoryImpl @Inject constructor(
             Log.d("GET DATA MOVIE", "getPopularMovies: ${response.message()}")
     }
 
-
-    override fun getTvShow(): LiveData<List<TvShowResult>> = liveData(IO) {
-        EspressoIdlingResource.increment()
-        val response = service.getAllPopularTvShow(TMBD_API_KEY)
-        if (response.isSuccessful && !response.equals(null)) {
-            emit(response.body()!!.results)
-            if (EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
-                EspressoIdlingResource.decrement()
-            }
-        } else
-            Log.d("GET TV SHOW DATA", "getTvShow: ${response.message()} ")
-    }
-
-
     override fun getDetailMovie(id: Int): LiveData<DetailMovieResponse> = liveData(IO) {
         EspressoIdlingResource.increment()
 //        val dataDetailMovie = MutableLiveData<DetailMovieResponse>()
@@ -61,6 +47,18 @@ class MovieRepositoryImpl @Inject constructor(
         } else
             Log.d("GET DETAIL MOVIE", "getDetailMovie: ${response.message()}")
 
+    }
+
+    override fun getTvShow(): LiveData<List<TvShowResult>> = liveData(IO) {
+        EspressoIdlingResource.increment()
+        val response = service.getAllPopularTvShow(TMBD_API_KEY)
+        if (response.isSuccessful && !response.equals(null)) {
+            emit(response.body()!!.results)
+            if (EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
+                EspressoIdlingResource.decrement()
+            }
+        } else
+            Log.d("GET TV SHOW DATA", "getTvShow: ${response.message()} ")
     }
 
     override fun getDetailTv(id: Int): LiveData<DetailTvResponse> = liveData(IO) {
