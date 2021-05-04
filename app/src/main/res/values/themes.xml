@@ -22,4 +22,11 @@
     <style name="Theme.Wathcers.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Wathcers.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#A6A6A6</item>
+        <item name="colorControlActivated">#FFC107</item>
+    </style>
+
 </resources>

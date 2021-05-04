@@ -1,15 +1,17 @@
 package taufiq.apps.wathcers.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import taufiq.apps.wathcers.data.MovieResult
 import taufiq.apps.wathcers.repo.MovieRepositoryImpl
 import javax.inject.Inject
 
+/**
+ * Created By Taufiq on 4/15/2021.
+ *
+ */
 @HiltViewModel
-class MoviesViewModel @Inject constructor(private val repository: MovieRepositoryImpl) :
+class TvViewModelDetail @Inject constructor(private val repository: MovieRepositoryImpl) :
     ViewModel() {
 
-    fun getMovies() = repository.getPopularMovies()
+    fun getTvShowDetail(id: Int) = repository.getDetailTv(id = id)
 }

@@ -6,4 +6,12 @@
     <string name="overview">Overview</string>
     <string name="book_now">Book now!</string>
     <string name="year">Year</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date">Date</string>
+    <string name="more_detail">More Detail</string>
+    <string name="genres">genres</string>
+    <string name="summary">Summary</string>
+    <string name="status">Status</string>
+    <string name="date_air">%s - %s</string>
 </resources>
