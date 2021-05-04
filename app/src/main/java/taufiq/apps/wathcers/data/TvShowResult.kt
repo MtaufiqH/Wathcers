@@ -12,8 +12,6 @@ data class TvShowResult(
     val id: Int,
     @SerializedName("name")
     val name: String,
-    @SerializedName("origin_country")
-    val originCountry: List<String>,
     @SerializedName("original_name")
     val originalName: String,
     @SerializedName("overview")

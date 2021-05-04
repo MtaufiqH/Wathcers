@@ -1,4 +1,4 @@
-package taufiq.apps.wathcers.repo
+package taufiq.apps.wathcers.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -9,6 +9,7 @@ import taufiq.apps.wathcers.data.TvShowResult
 import taufiq.apps.wathcers.data.detailmovie.DetailMovieResponse
 import taufiq.apps.wathcers.data.detailtv.DetailTvResponse
 import taufiq.apps.wathcers.network.MovieClientRequest
+import taufiq.apps.wathcers.repo.MovieRepository
 import taufiq.apps.wathcers.utils.Constant.Companion.TMBD_API_KEY
 import taufiq.apps.wathcers.utils.EspressoIdlingResource
 import javax.inject.Inject
@@ -17,12 +18,13 @@ import javax.inject.Inject
  * Created By Taufiq on 4/27/2021.
  *
  */
-class MovieRepositoryImpl @Inject constructor(
+class SampleMovieRepositoryImpl @Inject constructor(
     private val service: MovieClientRequest,
 ) : MovieRepository {
 
     override fun getPopularMovies(): LiveData<List<MovieResult>> = liveData(IO) {
         EspressoIdlingResource.increment()
+//        val dataMoviePopular = MutableLiveData<List<MovieResult>>()
         val response = service.getAllPopularMovies(TMBD_API_KEY)
         if (response.isSuccessful && !response.equals(null)) {
             emit(response.body()!!.results)
@@ -35,6 +37,7 @@ class MovieRepositoryImpl @Inject constructor(
 
     override fun getDetailMovie(id: Int): LiveData<DetailMovieResponse> = liveData(IO) {
         EspressoIdlingResource.increment()
+//        val dataDetailMovie = MutableLiveData<DetailMovieResponse>()
         val response = service.getMoviesDetail(id, TMBD_API_KEY)
         if (response.isSuccessful && !response.equals(null)) {
             response.body()?.let { emit(it) }
@@ -61,6 +64,7 @@ class MovieRepositoryImpl @Inject constructor(
 
     override fun getDetailTv(id: Int): LiveData<DetailTvResponse> = liveData(IO) {
         EspressoIdlingResource.increment()
+        //        val dataDetailTv = MutableLiveData<DetailTvResponse>()
         val response = service.getTvDetail(id, TMBD_API_KEY)
         if (response.isSuccessful && !response.equals(null)) {
             emit(response.body()!!)
