@@ -16,7 +16,7 @@ class TvShowAdapter : BaseAdapter<TvShowResult>(R.layout.movie_item_row) {
         val tvShow = data[position]
         val binding = MovieItemRowBinding.bind(holder.itemView)
         with(binding) {
-            ivPoster.load(Constant.IMAGE_PATH  + tvShow.posterPath )
+            ivPoster.load(Constant.IMAGE_PATH + tvShow.posterPath)
             this.root.setOnClickListener { itemClickListener?.invoke(tvShow) }
         }
 

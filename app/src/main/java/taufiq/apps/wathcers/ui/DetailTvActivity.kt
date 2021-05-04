@@ -9,7 +9,6 @@ import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import taufiq.apps.wathcers.R
 import taufiq.apps.wathcers.databinding.ActivityDetailTvBinding
-import taufiq.apps.wathcers.utils.Constant
 import taufiq.apps.wathcers.utils.Constant.Companion.IMAGE_PATH
 import taufiq.apps.wathcers.viewmodel.TvViewModelDetail
 

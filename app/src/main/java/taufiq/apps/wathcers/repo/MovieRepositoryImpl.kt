@@ -26,7 +26,7 @@ class MovieRepositoryImpl @Inject constructor(
         val response = service.getAllPopularMovies(TMBD_API_KEY)
         if (response.isSuccessful && !response.equals(null)) {
             emit(response.body()!!.results)
-            if (EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
+            if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
                 EspressoIdlingResource.decrement()
             }
         } else
@@ -39,7 +39,7 @@ class MovieRepositoryImpl @Inject constructor(
         if (response.isSuccessful && !response.equals(null)) {
             response.body()?.let { emit(it) }
 
-            if (EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
+            if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
                 EspressoIdlingResource.decrement()
             }
         } else
@@ -52,7 +52,7 @@ class MovieRepositoryImpl @Inject constructor(
         val response = service.getAllPopularTvShow(TMBD_API_KEY)
         if (response.isSuccessful && !response.equals(null)) {
             emit(response.body()!!.results)
-            if (EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
+            if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
                 EspressoIdlingResource.decrement()
             }
         } else
@@ -64,7 +64,7 @@ class MovieRepositoryImpl @Inject constructor(
         val response = service.getTvDetail(id, TMBD_API_KEY)
         if (response.isSuccessful && !response.equals(null)) {
             emit(response.body()!!)
-            if (EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
+            if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow) {
                 EspressoIdlingResource.decrement()
             }
         } else

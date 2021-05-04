@@ -34,8 +34,4 @@ interface MovieClientRequest {
         @Path("tv_id") tvId: Int,
         @Query("api_key") key: String
     ): Response<DetailTvResponse>
-
-//    @GET("movie/now_playing")
-//    suspend fun getNowPlayingMovies(@Query("api_key") apiKey: String): Response<NowPlayingResponse>
-
 }

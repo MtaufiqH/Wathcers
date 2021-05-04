@@ -12,7 +12,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import taufiq.apps.wathcers.adapter.MovieAdapter
 import taufiq.apps.wathcers.databinding.FragmentMoviesBinding
 import taufiq.apps.wathcers.utils.BaseFragment
-import taufiq.apps.wathcers.utils.Constant
 import taufiq.apps.wathcers.viewmodel.MoviesViewModel
 
 /**

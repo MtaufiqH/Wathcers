@@ -11,7 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import taufiq.apps.wathcers.adapter.TvShowAdapter
 import taufiq.apps.wathcers.databinding.FragmentTvBinding
 import taufiq.apps.wathcers.utils.BaseFragment
-import taufiq.apps.wathcers.utils.Constant
 import taufiq.apps.wathcers.viewmodel.TvViewModel
 
 /**
@@ -20,7 +19,7 @@ import taufiq.apps.wathcers.viewmodel.TvViewModel
  */
 @AndroidEntryPoint
 class TvFragment : BaseFragment() {
-    lateinit var binding: FragmentTvBinding
+    private lateinit var binding: FragmentTvBinding
     private val viewModel by viewModels<TvViewModel>()
     private val adapter by lazy {
         TvShowAdapter()
@@ -46,7 +45,7 @@ class TvFragment : BaseFragment() {
     }
 
     override fun observableInit() {
-        viewModel.getTvShows().observe(viewLifecycleOwner){
+        viewModel.getTvShows().observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) adapter.setData(it)
         }
     }

@@ -24,7 +24,6 @@ class DetailMoviesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailMoviesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         observeMovieDetail(idMovie)
 
     }
@@ -49,7 +48,6 @@ class DetailMoviesActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     companion object {
