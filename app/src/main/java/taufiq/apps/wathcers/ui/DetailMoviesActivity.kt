@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import dagger.hilt.android.AndroidEntryPoint
 import taufiq.apps.wathcers.databinding.ActivityDetailMoviesBinding
 import taufiq.apps.wathcers.utils.Constant
@@ -32,7 +33,9 @@ class DetailMoviesActivity : AppCompatActivity() {
         movieViewModel.getMovieDetail(id).observe(this) { movies ->
             with(binding) {
                 ivBackdrop.load(Constant.IMAGE_PATH + movies.backdropPath)
-                moviePoster.load(Constant.IMAGE_PATH + movies.posterPath)
+                moviePoster.load(Constant.IMAGE_PATH + movies.posterPath) {
+                    transformations(RoundedCornersTransformation(16f))
+                }
                 tvMovieTitle.text = movies.title
                 val allGenres = movies.genres.map {
                     it.name
