@@ -15,9 +15,9 @@ class MovieAdapter : BaseAdapter<MovieResult>(R.layout.movie_item_row) {
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val movies = data[position]
         val binding = MovieItemRowBinding.bind(holder.itemView)
-        with(binding) {
+        with (binding) {
             ivPoster.load("${Constant.IMAGE_PATH}${movies.posterPath}")
-            this.root.setOnClickListener { itemClickListener?.invoke(movies) }
+            root.setOnClickListener { itemClickListener?.invoke(movies) }
         }
 
     }
