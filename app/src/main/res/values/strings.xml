@@ -14,4 +14,6 @@
     <string name="status">Status</string>
     <string name="date_air">%s - %s</string>
     <string name="favorite">Favorite</string>
+    <string name="movies">Movies</string>
+    <string name="tv_show">Tv Show</string>
 </resources>
