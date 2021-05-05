@@ -24,7 +24,6 @@ class SampleMovieRepositoryImpl @Inject constructor(
 
     override fun getPopularMovies(): LiveData<List<MovieResult>> = liveData(IO) {
         EspressoIdlingResource.increment()
-//        val dataMoviePopular = MutableLiveData<List<MovieResult>>()
         val response = service.getAllPopularMovies(TMBD_API_KEY)
         if (response.isSuccessful && !response.equals(null)) {
             emit(response.body()!!.results)
@@ -37,7 +36,6 @@ class SampleMovieRepositoryImpl @Inject constructor(
 
     override fun getDetailMovie(id: Int): LiveData<DetailMovieResponse> = liveData(IO) {
         EspressoIdlingResource.increment()
-//        val dataDetailMovie = MutableLiveData<DetailMovieResponse>()
         val response = service.getMoviesDetail(id, TMBD_API_KEY)
         if (response.isSuccessful && !response.equals(null)) {
             response.body()?.let { emit(it) }
@@ -64,7 +62,6 @@ class SampleMovieRepositoryImpl @Inject constructor(
 
     override fun getDetailTv(id: Int): LiveData<DetailTvResponse> = liveData(IO) {
         EspressoIdlingResource.increment()
-        //        val dataDetailTv = MutableLiveData<DetailTvResponse>()
         val response = service.getTvDetail(id, TMBD_API_KEY)
         if (response.isSuccessful && !response.equals(null)) {
             emit(response.body()!!)
