@@ -27,15 +27,18 @@ class DetailMoviesActivity : AppCompatActivity() {
         setContentView(binding.root)
         observeMovieDetail(idMovie)
 
+
     }
 
     private fun observeMovieDetail(id: Int) {
         movieViewModel.getMovieDetail(id).observe(this) { movies ->
             with(binding) {
+                actionBar?.title = movies.title
                 ivBackdrop.load(Constant.IMAGE_PATH + movies.backdropPath)
                 moviePoster.load(Constant.IMAGE_PATH + movies.posterPath) {
                     transformations(RoundedCornersTransformation(16f))
                 }
+
                 tvMovieTitle.text = movies.title
                 val allGenres = movies.genres.map {
                     it.name

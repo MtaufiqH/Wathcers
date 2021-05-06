@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        loadFragment(MoviesFragment())
         bindNavigation()
     }
 
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                      loadFragment(FavoriteFragment())
                      true
 
-                 } else -> false
+                 } else -> loadFragment(MoviesFragment())
              }
          }
      }

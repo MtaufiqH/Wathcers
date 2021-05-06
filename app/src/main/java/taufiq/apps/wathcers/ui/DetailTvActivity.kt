@@ -31,8 +31,9 @@ class DetailTvActivity : AppCompatActivity() {
     private fun observeDataTv(id: Int) {
         tvViewModel.getTvShowDetail(id).observe(this) { tv ->
             binding.apply {
+                actionBar?.title = tv.name
                 ivBackdropTv.load(IMAGE_PATH + tv.backdropPath)
-                moviePosterTv.load(IMAGE_PATH + tv.posterPath){
+                moviePosterTv.load(IMAGE_PATH + tv.posterPath) {
                     transformations(RoundedCornersTransformation(16f))
                 }
                 tvMovieTitleTv.text = tv.name
