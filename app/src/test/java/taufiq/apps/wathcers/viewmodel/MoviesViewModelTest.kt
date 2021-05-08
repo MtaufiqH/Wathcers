@@ -10,7 +10,7 @@ import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import taufiq.apps.wathcers.data.MovieResult
-import taufiq.apps.wathcers.repo.MovieRepositoryImpl
+import taufiq.apps.wathcers.repo.RemoteDataSource
 import taufiq.apps.wathcers.viewmodel.sample.SampleData
 
 /**
@@ -22,7 +22,7 @@ class MoviesViewModelTest {
 
 
     private var movieViewModel: MoviesViewModel? = null
-    private var data = Mockito.mock(MovieRepositoryImpl::class.java)
+    private var data = Mockito.mock(RemoteDataSource::class.java)
 
     @Before
     fun setUp() {

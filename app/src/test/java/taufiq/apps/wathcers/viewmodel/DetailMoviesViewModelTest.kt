@@ -10,7 +10,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
-import taufiq.apps.wathcers.repo.MovieRepositoryImpl
+import taufiq.apps.wathcers.repo.RemoteDataSource
 import taufiq.apps.wathcers.viewmodel.sample.SampleData
 
 /**
@@ -21,7 +21,7 @@ class DetailMoviesViewModelTest {
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private var movieViewModel: MoviesViewModelDetail? = null
-    private var data = Mockito.mock(MovieRepositoryImpl::class.java)
+    private var data = Mockito.mock(RemoteDataSource::class.java)
 
     @Before
     fun setUp() {

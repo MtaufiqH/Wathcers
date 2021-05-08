@@ -1,6 +1,8 @@
 package taufiq.apps.wathcers.ui
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -20,29 +22,30 @@ class MainActivity : AppCompatActivity() {
         bindNavigation()
     }
 
-     private fun bindNavigation() {
-         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
-             when(it.itemId){
-                 R.id.menu_movies -> {
-                     loadFragment(MoviesFragment())
-                     true
-                 }
+    private fun bindNavigation() {
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.menu_movies -> {
+                    loadFragment(MoviesFragment())
+                    true
+                }
 
-                 R.id.menu_tv -> {
-                     loadFragment(TvFragment())
-                     true
-                 }
+                R.id.menu_tv -> {
+                    loadFragment(TvFragment())
+                    true
+                }
 
-                 R.id.menu_favorite -> {
-                     loadFragment(FavoriteFragment())
-                     true
+                R.id.menu_favorite -> {
+                    loadFragment(FavoriteFragment())
+                    true
 
-                 } else -> loadFragment(MoviesFragment())
-             }
-         }
-     }
+                }
+                else -> loadFragment(MoviesFragment())
+            }
+        }
+    }
 
-     private fun loadFragment(fragment: Fragment): Boolean {
+    private fun loadFragment(fragment: Fragment): Boolean {
         return run {
             supportFragmentManager.commit {
                 replace(R.id.fragment_container, fragment)
@@ -51,5 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
 
 }

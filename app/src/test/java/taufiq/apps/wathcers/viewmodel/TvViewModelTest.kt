@@ -4,15 +4,13 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
-import taufiq.apps.wathcers.data.MovieResult
 import taufiq.apps.wathcers.data.TvShowResult
-import taufiq.apps.wathcers.repo.MovieRepositoryImpl
+import taufiq.apps.wathcers.repo.RemoteDataSource
 import taufiq.apps.wathcers.viewmodel.sample.SampleData
 
 /**
@@ -25,7 +23,7 @@ class TvViewModelTest {
 
 
     private var tvViewModels: TvViewModel? = null
-    private var data = Mockito.mock(MovieRepositoryImpl::class.java)
+    private var data = Mockito.mock(RemoteDataSource::class.java)
 
     @Before
     fun setUp() {

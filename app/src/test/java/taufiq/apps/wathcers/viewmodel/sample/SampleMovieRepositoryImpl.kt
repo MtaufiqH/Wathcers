@@ -9,7 +9,7 @@ import taufiq.apps.wathcers.data.TvShowResult
 import taufiq.apps.wathcers.data.detailmovie.DetailMovieResponse
 import taufiq.apps.wathcers.data.detailtv.DetailTvResponse
 import taufiq.apps.wathcers.network.MovieClientRequest
-import taufiq.apps.wathcers.repo.MovieRepository
+import taufiq.apps.wathcers.repo.DataSource
 import taufiq.apps.wathcers.utils.Constant.Companion.TMBD_API_KEY
 import taufiq.apps.wathcers.utils.EspressoIdlingResource
 import javax.inject.Inject
@@ -20,7 +20,7 @@ import javax.inject.Inject
  */
 class SampleMovieRepositoryImpl @Inject constructor(
     private val service: MovieClientRequest,
-) : MovieRepository {
+) : DataSource {
 
     override fun getPopularMovies(): LiveData<List<MovieResult>> = liveData(IO) {
         EspressoIdlingResource.increment()

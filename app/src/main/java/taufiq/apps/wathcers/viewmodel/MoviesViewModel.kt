@@ -2,11 +2,11 @@ package taufiq.apps.wathcers.viewmodel
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import taufiq.apps.wathcers.repo.MovieRepositoryImpl
+import taufiq.apps.wathcers.repo.RemoteDataSource
 import javax.inject.Inject
 
 @HiltViewModel
-class MoviesViewModel @Inject constructor(private val repository: MovieRepositoryImpl) :
+class MoviesViewModel @Inject constructor(private val repository: RemoteDataSource) :
     ViewModel() {
 
     fun getMovies() = repository.getPopularMovies()

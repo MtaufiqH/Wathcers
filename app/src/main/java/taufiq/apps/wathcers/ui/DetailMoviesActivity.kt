@@ -3,11 +3,14 @@ package taufiq.apps.wathcers.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import dagger.hilt.android.AndroidEntryPoint
+import taufiq.apps.wathcers.R
 import taufiq.apps.wathcers.databinding.ActivityDetailMoviesBinding
 import taufiq.apps.wathcers.utils.Constant
 import taufiq.apps.wathcers.viewmodel.MoviesViewModelDetail
@@ -33,7 +36,6 @@ class DetailMoviesActivity : AppCompatActivity() {
     private fun observeMovieDetail(id: Int) {
         movieViewModel.getMovieDetail(id).observe(this) { movies ->
             with(binding) {
-                actionBar?.title = movies.title
                 ivBackdrop.load(Constant.IMAGE_PATH + movies.backdropPath)
                 moviePoster.load(Constant.IMAGE_PATH + movies.posterPath) {
                     transformations(RoundedCornersTransformation(16f))
@@ -54,6 +56,18 @@ class DetailMoviesActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.fav_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.fav_button_menu) {
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {

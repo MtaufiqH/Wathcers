@@ -3,6 +3,8 @@ package taufiq.apps.wathcers.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
@@ -31,7 +33,6 @@ class DetailTvActivity : AppCompatActivity() {
     private fun observeDataTv(id: Int) {
         tvViewModel.getTvShowDetail(id).observe(this) { tv ->
             binding.apply {
-                actionBar?.title = tv.name
                 ivBackdropTv.load(IMAGE_PATH + tv.backdropPath)
                 moviePosterTv.load(IMAGE_PATH + tv.posterPath) {
                     transformations(RoundedCornersTransformation(16f))
@@ -55,6 +56,18 @@ class DetailTvActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.fav_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.fav_button_menu) {
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {
