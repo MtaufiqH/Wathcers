@@ -33,7 +33,8 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_unfavorite" />
+            app:srcCompat="@drawable/ic_unfavorite"
+            android:contentDescription="@string/favorite_button" />
 
         <View
             android:id="@+id/view2"
@@ -123,17 +124,17 @@
 
         <ImageView
             android:id="@+id/movie_poster_tv"
-            android:layout_width="100dp"
-            android:layout_height="150dp"
+            android:layout_width="125dp"
+            android:layout_height="250dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="120dp"
+            android:contentDescription="@string/movie_image"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.061"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_backdrop_tv"
-            tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="@string/movie_image" />
+            tools:srcCompat="@tools:sample/avatars" />
 
         <RatingBar
             android:id="@+id/movie_rating_tv"
