@@ -78,7 +78,7 @@ class MoviesFragment : BaseFragment(), MovieListener {
 
     override fun onItemClicked(data: MovieEntity) {
         startActivity(Intent(context,DetailMoviesActivity::class.java).also {
-            it.putExtra(DetailMoviesActivity.MOVIE_KEY_EXTRA,data)
+            it.putExtra(DetailMoviesActivity.MOVIE_KEY_EXTRA,data.id)
         })
     }
 }

@@ -31,6 +31,15 @@ data class MovieEntity(
     @ColumnInfo(name = "movie_poster")
     var poster: String? = null,
 
+    @ColumnInfo(name = "backdrop_movie")
+    var backdrop: String? = null,
+
+    @ColumnInfo(name = "rating_movie")
+    var ratings: Double? = null,
+
+    @ColumnInfo(name = "date_movie")
+    var dates: String? = null,
+
     @NonNull
     @ColumnInfo(name = "is_favorite")
     var isFavorite: Boolean = false

@@ -27,36 +27,36 @@ class DetailTvActivity : AppCompatActivity() {
 
         val idTv = intent.getIntExtra(TV_KEY_EXTRA, 0)
 
-        observeDataTv(idTv)
+//        observeDataTv(idTv)
     }
 
-    private fun observeDataTv(id: Int) {
-        tvViewModel.getTvShowDetail(id).observe(this) { tv ->
-            binding.apply {
-                ivBackdropTv.load(IMAGE_PATH + tv.backdropPath)
-                moviePosterTv.load(IMAGE_PATH + tv.posterPath) {
-                    transformations(RoundedCornersTransformation(16f))
-                }
-                tvMovieTitleTv.text = tv.name
-
-                val genreTv = tv.genres.map {
-                    it.name
-                }
-
-                movieGenreTv.text = genreTv.joinToString()
-                movieRatingTv.rating = tv.voteAverage.toFloat()
-                tvMovieOverviewTv.text = tv.overview
-                tvDateTv.text = getString(R.string.date_air, tv.firstAirDate, tv.lastAirDate)
-                tvReleasedStatusTv.text = tv.status
-                btnMoreTv.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(tv.homepage))
-                    startActivity(intent)
-                }
-
-            }
-        }
-
-    }
+//    private fun observeDataTv(id: Int) {
+//        tvViewModel.getTvShowDetail(id).observe(this) { tv ->
+//            binding.apply {
+//                ivBackdropTv.load(IMAGE_PATH + tv.backdropPath)
+//                moviePosterTv.load(IMAGE_PATH + tv.posterPath) {
+//                    transformations(RoundedCornersTransformation(16f))
+//                }
+//                tvMovieTitleTv.text = tv.name
+//
+//                val genreTv = tv.genres.map {
+//                    it.name
+//                }
+//
+//                movieGenreTv.text = genreTv.joinToString()
+//                movieRatingTv.rating = tv.voteAverage.toFloat()
+//                tvMovieOverviewTv.text = tv.overview
+//                tvDateTv.text = getString(R.string.date_air, tv.firstAirDate, tv.lastAirDate)
+//                tvReleasedStatusTv.text = tv.status
+//                btnMoreTv.setOnClickListener {
+//                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(tv.homepage))
+//                    startActivity(intent)
+//                }
+//
+//            }
+//        }
+//
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.fav_menu, menu)

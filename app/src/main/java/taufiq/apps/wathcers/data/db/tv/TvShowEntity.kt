@@ -31,6 +31,15 @@ data class TvShowEntity(
     @ColumnInfo(name = "movie_poster")
     var poster: String? = null,
 
+    @ColumnInfo(name = "backdrop_tv")
+    var backdrop: String? = null,
+
+    @ColumnInfo(name = "rating_tv")
+    var ratings: Double? = null,
+
+    @ColumnInfo(name = "date_tv")
+    var dates: String? = null,
+
     @NonNull
     @ColumnInfo(name = "is_favorite")
     var isFavorite: Boolean = false

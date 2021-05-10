@@ -50,7 +50,9 @@ class TmdbRepository @Inject constructor(
                         item.title,
                         item.overview,
                         item.posterPath,
-                        false
+                        item.backdropPath,
+                        item.voteAverage,
+                        item.releaseDate,false
                     )
 
                     movieList.add(movie)
@@ -87,7 +89,9 @@ class TmdbRepository @Inject constructor(
                         item.name,
                         item.overview,
                         item.posterPath,
-                        false
+                        item.backdropPath,
+                        item.voteAverage,
+                        item.firstAirDate,false
                     )
                     tvShowList.add(tvShows)
                 }
