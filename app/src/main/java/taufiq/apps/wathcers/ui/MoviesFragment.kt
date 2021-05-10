@@ -49,9 +49,10 @@ class MoviesFragment : BaseFragment(), MovieListener {
             if (movies != null) {
                 when (movies.status) {
                     Status.LOADING -> {
-
+                        binding.pbMovies.visibility = View.VISIBLE
                     }
                     Status.SUCCESS -> {
+                        binding.pbMovies.visibility = View.GONE
                         binding.rvMovies.adapter?.let { adapter ->
                             when(adapter) {
                                 is MovieAdapters -> {
@@ -63,6 +64,7 @@ class MoviesFragment : BaseFragment(), MovieListener {
 
                     }
                     Status.ERROR -> {
+                        binding.pbMovies.visibility = View.GONE
                         Toast.makeText(
                             requireContext(),
                             getString(R.string.check_internet),

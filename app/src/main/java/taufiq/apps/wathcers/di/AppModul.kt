@@ -58,7 +58,6 @@ class AppModul {
 
     @Singleton
     @Provides
-    fun provideDaos(favDb: TmdbDatabase): TmdbDao =
-        favDb.tmbdDao()
+    fun provideDaos(favDb: TmdbDatabase): TmdbDao = favDb.tmbdDao()
 
 }

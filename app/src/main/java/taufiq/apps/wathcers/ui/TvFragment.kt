@@ -48,8 +48,11 @@ class TvFragment : BaseFragment(), TvShowListener {
         viewModel.getTvShows().observe(viewLifecycleOwner) { tvDatas ->
             if (tvDatas != null) {
                 when(tvDatas.status) {
-                    Status.LOADING -> {}
+                    Status.LOADING -> {
+                        binding.pbTvshow.visibility = View.VISIBLE
+                    }
                     Status.SUCCESS -> {
+                        binding.pbTvshow.visibility = View.GONE
                         binding.rvTvShow.adapter?.let {
                             when(it) {
                                 is TvShowAdapters -> {
@@ -60,6 +63,7 @@ class TvFragment : BaseFragment(), TvShowListener {
                         }
                     }
                     Status.ERROR -> {
+                        binding.pbTvshow.visibility = View.GONE
                         Toast.makeText(
                             requireContext(),
                             getString(R.string.check_internet),
