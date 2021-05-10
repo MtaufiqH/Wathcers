@@ -2,62 +2,64 @@ package taufiq.apps.wathcers.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.verify
 import junit.framework.Assert.assertEquals
-import org.junit.Assert
+import junit.framework.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito
-import taufiq.apps.wathcers.repo.RemoteDataSource
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.junit.MockitoJUnitRunner
+import taufiq.apps.wathcers.data.db.tv.TvShowEntity
+import taufiq.apps.wathcers.repo.TmdbRepository
 import taufiq.apps.wathcers.viewmodel.sample.SampleData
 
 /**
  * Created By Taufiq on 5/4/2021.
  */
+@RunWith(MockitoJUnitRunner::class)
 class TvViewModelDetailTest {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private var tvViewModel: TvViewModelDetail? = null
-    private var data = Mockito.mock(RemoteDataSource::class.java)
+    private lateinit var tvViewModel: TvViewModelDetail
 
+    @Mock
+    private lateinit var tmdbRepository: TmdbRepository
+
+    @Mock
+    private lateinit var observerTvShow: Observer<TvShowEntity>
+
+    private val tvSample = SampleData.getSampleOfTvList()[0]
+    private val tvId = tvSample.tvId
 
     @Before
     fun setUp() {
-        tvViewModel = TvViewModelDetail(data)
+        tvViewModel = TvViewModelDetail(tmdbRepository)
     }
 
     @Test
-    fun `verify tv show popular list`() {
-        val id = 88396
-        val sampleData = SampleData.getSampleOfDetailTvShow()
-        val detailMovie = MutableLiveData(sampleData)
-        Mockito.`when`(data.getDetailTv(id)).thenReturn(detailMovie)
-        val dataDetails = tvViewModel?.getTvShowDetail(id)?.value
-        verify(data).getDetailTv(id)
-        Assert.assertNotNull(dataDetails)
+    fun `verify tv show detail popular`() {
+        val sampleTv = MutableLiveData<TvShowEntity>()
+        sampleTv.value = tvSample
+        `when`(tmdbRepository.getTvShowDetail(tvId)).thenReturn(sampleTv)
+        val tvShowEntity = tvViewModel.getTvShowDetail(tvId).value
+        assertNotNull(tvShowEntity)
+        assertEquals(tvSample.id, tvShowEntity?.id)
+        assertEquals(tvSample.tvId, tvShowEntity?.tvId)
+        assertEquals(tvSample.poster, tvShowEntity?.poster)
+        assertEquals(tvSample.backdrop, tvShowEntity?.backdrop)
+        assertEquals(tvSample.dates, tvShowEntity?.dates)
+        assertEquals(tvSample.isFavorite, tvShowEntity?.isFavorite)
+        assertEquals(tvSample.desc, tvShowEntity?.desc)
+        assertEquals(tvSample.ratings, tvShowEntity?.ratings)
+        assertEquals(tvSample.tvName, tvShowEntity?.tvName)
 
-        assertEquals(sampleData.name, dataDetails?.name)
-        assertEquals(sampleData.backdropPath, dataDetails?.backdropPath)
-        assertEquals(sampleData.overview, dataDetails?.overview)
-        assertEquals(
-            sampleData.genres.toString(),
-            dataDetails?.genres.toString()
-        )
-        assertEquals(sampleData.status, dataDetails?.status)
-        assertEquals(sampleData.posterPath, dataDetails?.posterPath)
-        assertEquals(sampleData.lastAirDate, dataDetails?.lastAirDate)
-        assertEquals(sampleData.posterPath, dataDetails?.posterPath)
-        assertEquals(sampleData.originalName, dataDetails?.originalName)
-        assertEquals(
-            sampleData.popularity,
-            dataDetails?.popularity
-        )
-        assertEquals(sampleData.voteAverage, dataDetails?.voteAverage)
-        assertEquals(sampleData.voteCount, dataDetails?.voteCount)
-        assertEquals(sampleData.homepage, dataDetails?.homepage)
-
+        tvViewModel.getTvShowDetail(tvId).observeForever(observerTvShow)
+        verify(observerTvShow).onChanged(tvSample)
     }
 }

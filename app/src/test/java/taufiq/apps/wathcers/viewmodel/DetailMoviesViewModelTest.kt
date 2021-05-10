@@ -2,56 +2,64 @@ package taufiq.apps.wathcers.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.verify
 import junit.framework.Assert.assertEquals
-import org.junit.Assert
+import junit.framework.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito
+import org.junit.runner.RunWith
+import org.mockito.Mock
 import org.mockito.Mockito.`when`
-import taufiq.apps.wathcers.repo.RemoteDataSource
+import org.mockito.junit.MockitoJUnitRunner
+import taufiq.apps.wathcers.data.db.movie.MovieEntity
+import taufiq.apps.wathcers.repo.TmdbRepository
 import taufiq.apps.wathcers.viewmodel.sample.SampleData
 
 /**
  * Created By Taufiq on 5/3/2021.
  */
+@RunWith(MockitoJUnitRunner::class)
 class DetailMoviesViewModelTest {
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private var movieViewModel: MoviesViewModelDetail? = null
-    private var data = Mockito.mock(RemoteDataSource::class.java)
+    private lateinit var movieViewModel: MoviesViewModelDetail
+
+    @Mock
+    private lateinit var tmdbRepository: TmdbRepository
+
+    @Mock
+    private lateinit var observerMovie: Observer<MovieEntity>
+
+    private val movieSample = SampleData.getSampleOfMovieList()[0]
+    private val movieId = movieSample.movieId
 
     @Before
     fun setUp() {
-        movieViewModel = MoviesViewModelDetail(data)
+        movieViewModel = MoviesViewModelDetail(tmdbRepository)
     }
 
     @Test
-    fun `verify movie popular movie list`() {
-        val id = 460465
-        val sampleData = SampleData.getSampleOfDetailMovie()
-        val detailMovie = MutableLiveData(sampleData)
-        `when`(data.getDetailMovie(id)).thenReturn(detailMovie)
-        val dataDetails = movieViewModel?.getMovieDetail(id)?.value
-        verify(data).getDetailMovie(id)
-        Assert.assertNotNull(dataDetails)
+    fun `verify detail movie popular`() {
+        val sampleMovie = MutableLiveData<MovieEntity>()
+        sampleMovie.value = movieSample
+        `when`(tmdbRepository.getMovieDetail(movieId)).thenReturn(sampleMovie)
+        val movie = movieViewModel.getMovieDetail(movieId).value
+        assertNotNull(movie)
+        assertEquals(movieSample.id, movie?.id)
+        assertEquals(movieSample.movieId, movie?.movieId)
+        assertEquals(movieSample.poster, movie?.poster)
+        assertEquals(movieSample.backdrop, movie?.backdrop)
+        assertEquals(movieSample.dates, movie?.dates)
+        assertEquals(movieSample.isFavorite, movie?.isFavorite)
+        assertEquals(movieSample.movieDesc, movie?.movieDesc)
+        assertEquals(movieSample.ratings, movie?.ratings)
+        assertEquals(movieSample.movieName, movie?.movieName)
 
-        assertEquals(sampleData.title, dataDetails?.title)
-        assertEquals(sampleData.backdropPath, dataDetails?.backdropPath)
-        assertEquals(sampleData.overview, dataDetails?.overview)
-        assertEquals(sampleData.genres.toString(), dataDetails?.genres.toString())
-        assertEquals(sampleData.status, dataDetails?.status)
-        assertEquals(sampleData.posterPath, dataDetails?.posterPath)
-        assertEquals(sampleData.releaseDate, dataDetails?.releaseDate)
-        assertEquals(sampleData.posterPath, dataDetails?.posterPath)
-        assertEquals(sampleData.originalTitle, dataDetails?.originalTitle)
-        assertEquals(sampleData.originalLanguage, dataDetails?.originalLanguage)
-        assertEquals(sampleData.voteAverage, dataDetails?.voteAverage)
-        assertEquals(sampleData.voteCount, dataDetails?.voteCount)
-        assertEquals(sampleData.homepage, dataDetails?.homepage)
-
+        movieViewModel.getMovieDetail(movieId).observeForever(observerMovie)
+        verify(observerMovie).onChanged(movieSample)
     }
 
 }
