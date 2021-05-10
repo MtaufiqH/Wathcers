@@ -37,7 +37,7 @@ class DetailTvActivity : AppCompatActivity() {
     }
 
     private fun setFavorite(tvShows: TvShowEntity) {
-        if (tvShows.isFavorite) {
+        if (!tvShows.isFavorite) {
             Toast.makeText(this, "set as favorite", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "remove from favorite", Toast.LENGTH_SHORT).show()
@@ -68,8 +68,6 @@ class DetailTvActivity : AppCompatActivity() {
         }
 
     }
-
-
     companion object {
         const val TV_KEY_EXTRA = "TV_KEY_EXTRA"
     }
