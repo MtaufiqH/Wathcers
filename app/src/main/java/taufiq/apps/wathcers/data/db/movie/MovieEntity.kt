@@ -1,14 +1,17 @@
 package taufiq.apps.wathcers.data.db.movie
 
+import android.os.Parcelable
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created By Taufiq on 5/7/2021.
  *
  */
+@Parcelize
 @Entity(tableName = "movie_table")
 data class MovieEntity(
     @PrimaryKey(autoGenerate = true)
@@ -31,4 +34,4 @@ data class MovieEntity(
     @NonNull
     @ColumnInfo(name = "is_favorite")
     var isFavorite: Boolean = false
-)
+) : Parcelable

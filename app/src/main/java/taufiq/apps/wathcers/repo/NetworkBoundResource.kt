@@ -66,7 +66,6 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
         }
     }
 
-    fun asLiveData(): LiveData<Resources<ResultType>> = result
 
     private fun onFetchFailed() {}
 
@@ -78,5 +77,6 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
     protected abstract fun loadFromDB(): LiveData<ResultType>
 
+    fun asLiveData(): LiveData<Resources<ResultType>> = result
 
 }

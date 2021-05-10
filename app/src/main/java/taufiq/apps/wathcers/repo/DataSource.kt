@@ -11,13 +11,13 @@ import taufiq.apps.wathcers.vo.Resources
  *
  */
 interface DataSource {
-    fun getNowPlayingMovies(): LiveData<Resources<PagedList<MovieEntity>>>
+    fun getPopularMovies(): LiveData<Resources<PagedList<MovieEntity>>>
 
     fun getListFavoriteMovies(): LiveData<PagedList<MovieEntity>>
 
     fun getMovieDetail(movieId: Int): LiveData<MovieEntity>
 
-    fun getTvShowOnTheAir(): LiveData<Resources<PagedList<TvShowEntity>>>
+    fun getTvShow(): LiveData<Resources<PagedList<TvShowEntity>>>
 
     fun getListFavoriteTvShows(): LiveData<PagedList<TvShowEntity>>
 

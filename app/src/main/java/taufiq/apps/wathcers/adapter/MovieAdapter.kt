@@ -12,6 +12,9 @@ import taufiq.apps.wathcers.utils.Constant
  *
  */
 class MovieAdapter : BaseAdapter<MovieResult>(R.layout.movie_item_row) {
+
+
+
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val movies = data[position]
         val binding = MovieItemRowBinding.bind(holder.itemView)

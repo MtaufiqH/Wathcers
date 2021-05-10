@@ -1,16 +1,19 @@
 package taufiq.apps.wathcers.data.db.tv
 
+import android.os.Parcelable
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created By Taufiq on 5/7/2021.
  *
  */
+@Parcelize
 @Entity(tableName = "tv_show_table")
-class TvShowEntity(
+data class TvShowEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id: Int? = null,
@@ -31,4 +34,4 @@ class TvShowEntity(
     @NonNull
     @ColumnInfo(name = "is_favorite")
     var isFavorite: Boolean = false
-)
+) : Parcelable
