@@ -54,11 +54,6 @@ class DetailMoviesActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.fav_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
     private fun setFavoriteState(status: Boolean) {
         if (status) {
             binding.favoriteMovie.setImageResource(R.drawable.ic_favorite)
@@ -68,7 +63,7 @@ class DetailMoviesActivity : AppCompatActivity() {
     }
 
     private fun setFavorite(movies: MovieEntity) {
-        if (movies.isFavorite) {
+        if (!movies.isFavorite) {
             Toast.makeText(this, "set as favorite", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "remove from favorite", Toast.LENGTH_SHORT).show()

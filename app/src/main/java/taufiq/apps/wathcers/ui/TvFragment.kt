@@ -1,5 +1,6 @@
 package taufiq.apps.wathcers.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -76,6 +77,8 @@ class TvFragment : BaseFragment(), TvShowListener {
     }
 
     override fun onItemClicked(data: TvShowEntity) {
-
+            startActivity(Intent(requireContext(),DetailTvActivity::class.java).also {
+                it.putExtra(DetailTvActivity.TV_KEY_EXTRA,data.tvId)
+            })
     }
 }

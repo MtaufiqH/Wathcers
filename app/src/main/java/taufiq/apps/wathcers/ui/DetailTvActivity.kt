@@ -1,16 +1,14 @@
 package taufiq.apps.wathcers.ui
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import dagger.hilt.android.AndroidEntryPoint
 import taufiq.apps.wathcers.R
+import taufiq.apps.wathcers.data.db.tv.TvShowEntity
 import taufiq.apps.wathcers.databinding.ActivityDetailTvBinding
 import taufiq.apps.wathcers.utils.Constant.Companion.IMAGE_PATH
 import taufiq.apps.wathcers.viewmodel.TvViewModelDetail
@@ -24,51 +22,53 @@ class DetailTvActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailTvBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val idTv = intent.getIntExtra(TV_KEY_EXTRA, 0)
 
-//        observeDataTv(idTv)
+        observeDataTv(idTv)
+
     }
 
-//    private fun observeDataTv(id: Int) {
-//        tvViewModel.getTvShowDetail(id).observe(this) { tv ->
-//            binding.apply {
-//                ivBackdropTv.load(IMAGE_PATH + tv.backdropPath)
-//                moviePosterTv.load(IMAGE_PATH + tv.posterPath) {
-//                    transformations(RoundedCornersTransformation(16f))
-//                }
-//                tvMovieTitleTv.text = tv.name
-//
-//                val genreTv = tv.genres.map {
-//                    it.name
-//                }
-//
-//                movieGenreTv.text = genreTv.joinToString()
-//                movieRatingTv.rating = tv.voteAverage.toFloat()
-//                tvMovieOverviewTv.text = tv.overview
-//                tvDateTv.text = getString(R.string.date_air, tv.firstAirDate, tv.lastAirDate)
-//                tvReleasedStatusTv.text = tv.status
-//                btnMoreTv.setOnClickListener {
-//                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(tv.homepage))
-//                    startActivity(intent)
-//                }
-//
-//            }
-//        }
-//
-//    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.fav_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.fav_button_menu) {
-
+    private fun setFavoriteState(status: Boolean) {
+        if (status) {
+            binding.favoriteTv.setImageResource(R.drawable.ic_favorite)
+        } else {
+            binding.favoriteTv.setImageResource(R.drawable.ic_unfavorite)
         }
-        return super.onOptionsItemSelected(item)
     }
+
+    private fun setFavorite(tvShows: TvShowEntity) {
+        if (tvShows.isFavorite) {
+            Toast.makeText(this, "set as favorite", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "remove from favorite", Toast.LENGTH_SHORT).show()
+        }
+
+        tvViewModel.setFavoritTvShow(tvShows)
+    }
+
+    private fun observeDataTv(id: Int) {
+        tvViewModel.getTvShowDetail(id).observe(this) { tv ->
+            binding.apply {
+                ivBackdropTv.load(IMAGE_PATH + tv.backdrop)
+                moviePosterTv.load(IMAGE_PATH + tv.poster) {
+                    transformations(RoundedCornersTransformation(16f))
+                }
+                tvMovieTitleTv.text = tv.tvName
+                val isFavorite = tv.isFavorite
+                movieRatingTv.rating = tv.ratings!!.toFloat()
+                tvMovieOverviewTv.text = tv.desc
+                tvDateTv.text = tv.dates
+
+                binding.favoriteTv.setOnClickListener {
+                    setFavorite(tv)
+                }
+
+                setFavoriteState(isFavorite)
+            }
+        }
+
+    }
+
 
     companion object {
         const val TV_KEY_EXTRA = "TV_KEY_EXTRA"
