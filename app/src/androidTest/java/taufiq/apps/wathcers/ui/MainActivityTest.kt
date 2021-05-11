@@ -2,6 +2,7 @@ package taufiq.apps.wathcers.ui
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeUp
@@ -22,8 +23,8 @@ import taufiq.apps.wathcers.utils.EspressoIdlingResource
 class MainActivityTest {
 
 
-    private val sampleMovie = SampleData.getSampleOfMovieList()
-    private val sampleTvShow = SampleData.getSampleOfTvList()
+    private val sampleMovie = SampleDatas.getSampleOfMovieList()
+    private val sampleTvShow = SampleDatas.getSampleOfTvList()
 
     @Suppress("DEPRECATION")
     @Rule
@@ -44,7 +45,7 @@ class MainActivityTest {
 
     @Test
     fun loadMoviesAndClickOne() {
-        onView(withId(R.id.tabs_id)).check(matches(isDisplayed()))
+        onView(withId(R.id.bottomNavigationView)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_movies)).apply {
             check(matches(isDisplayed()))
             perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(sampleMovie.size))
@@ -54,18 +55,16 @@ class MainActivityTest {
         onView(withId(R.id.iv_backdrop)).check(matches(isDisplayed()))
         onView(withId(R.id.movie_poster)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_movie_overview)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_released_status)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_movie_title)).check(matches(isDisplayed()))
         onView(withId(R.id.movie_rating)).check(matches(isDisplayed()))
-        onView(withId(R.id.movie_genre)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_date)).check(matches(isDisplayed()))
         onView(withId(R.id.root_scroll)).perform(swipeUp())
-        onView(withId(R.id.btn_more)).check(matches(isDisplayed()))
     }
 
     @Test
     fun loadTvShowAndClickOne() {
-        onView(withText("Tv Show")).perform(click())
+        onView(withId(R.id.bottomNavigationView)).check(matches(isDisplayed()))
+        onView(withId(R.id.menu_tv)).perform(click())
         onView(withId(R.id.rv_tv_show)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_tv_show)).apply {
             perform(
@@ -78,12 +77,86 @@ class MainActivityTest {
         onView(withId(R.id.iv_backdrop_tv)).check(matches(isDisplayed()))
         onView(withId(R.id.movie_poster_tv)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_movie_overview_tv)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_released_status_tv)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_movie_title_tv)).check(matches(isDisplayed()))
         onView(withId(R.id.movie_rating_tv)).check(matches(isDisplayed()))
-        onView(withId(R.id.movie_genre_tv)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_date_tv)).check(matches(isDisplayed()))
         onView(withId(R.id.root_scroll_tv)).perform(swipeUp())
-        onView(withId(R.id.btn_more_tv)).check(matches(isDisplayed()))
     }
+
+    @Test
+    fun loadMoviesAndAddoneIntoFavorite() {
+        onView(withId(R.id.rv_movies)).apply {
+            check(matches(isDisplayed()))
+            perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        }
+        onView(withId(R.id.iv_backdrop)).check(matches(isDisplayed()))
+        onView(withId(R.id.movie_poster)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_movie_overview)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_movie_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.movie_rating)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_date)).check(matches(isDisplayed()))
+        onView(withId(R.id.favorite_movie)).check(matches(isDisplayed())).also {
+            it.perform(click())
+            pressBack()
+        }
+
+    }
+
+    @Test
+    fun loadTvShowAndAddoneIntoFavorite() {
+        onView(withId(R.id.menu_tv)).perform(click())
+        onView(withId(R.id.rv_tv_show)).apply {
+            check(matches(isDisplayed()))
+            perform(
+                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                    0,
+                    click()
+                )
+            )
+        }
+        onView(withId(R.id.iv_backdrop_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.movie_poster_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_movie_overview_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_movie_title_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.movie_rating_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_date_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.favorite_tv)).check(matches(isDisplayed())).also {
+            it.perform(click())
+            pressBack()
+        }
+
+    }
+
+    @Test
+    fun loadFavoriteMovies() {
+        onView(withId(R.id.menu_favorite)).perform(click())
+        onView(withId(R.id.rv_movies_favorite)).apply {
+            check(matches(isDisplayed()))
+            perform(
+                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                    0,
+                    click()
+                )
+            )
+            pressBack()
+        }
+    }
+
+    @Test
+    fun loadFavoriteTvShow() {
+        onView(withId(R.id.menu_favorite)).perform(click())
+        onView(withText(R.string.tab_text_2)).perform(click())
+        onView(withId(R.id.rv_tv_favorite)).apply {
+            check(matches(isDisplayed()))
+            perform(
+                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                    0,
+                    click()
+                )
+            )
+            pressBack()
+        }
+    }
+
+
 }
