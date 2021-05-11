@@ -2,10 +2,6 @@ package taufiq.apps.wathcers.viewmodel.sample
 
 import taufiq.apps.wathcers.data.db.movie.MovieEntity
 import taufiq.apps.wathcers.data.db.tv.TvShowEntity
-import taufiq.apps.wathcers.data.detailmovie.DetailMovieResponse
-import taufiq.apps.wathcers.data.detailmovie.Genre
-import taufiq.apps.wathcers.data.detailtv.DetailTvResponse
-import taufiq.apps.wathcers.data.detailtv.Genres
 
 /**
  * Created By Taufiq on 5/3/2021.

@@ -68,6 +68,7 @@ class DetailTvActivity : AppCompatActivity() {
         }
 
     }
+
     companion object {
         const val TV_KEY_EXTRA = "TV_KEY_EXTRA"
     }

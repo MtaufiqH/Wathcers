@@ -41,7 +41,7 @@ class MoviesFragment : BaseFragment(), MovieListener {
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.rvMovies.adapter = MovieAdapters(this)
-        binding.rvMovies.layoutManager = GridLayoutManager(requireContext(),2)
+        binding.rvMovies.layoutManager = GridLayoutManager(requireContext(), 2)
     }
 
     override fun observableInit() {
@@ -54,7 +54,7 @@ class MoviesFragment : BaseFragment(), MovieListener {
                     Status.SUCCESS -> {
                         binding.pbMovies.visibility = View.GONE
                         binding.rvMovies.adapter?.let { adapter ->
-                            when(adapter) {
+                            when (adapter) {
                                 is MovieAdapters -> {
                                     adapter.submitList(movies.data)
                                     adapter.notifyDataSetChanged()
@@ -77,8 +77,8 @@ class MoviesFragment : BaseFragment(), MovieListener {
     }
 
     override fun onItemClicked(data: MovieEntity) {
-        startActivity(Intent(context,DetailMoviesActivity::class.java).also {
-            it.putExtra(DetailMoviesActivity.MOVIE_KEY_EXTRA,data.movieId)
+        startActivity(Intent(context, DetailMoviesActivity::class.java).also {
+            it.putExtra(DetailMoviesActivity.MOVIE_KEY_EXTRA, data.movieId)
         })
     }
 }

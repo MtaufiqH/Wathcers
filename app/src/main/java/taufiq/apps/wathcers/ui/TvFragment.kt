@@ -39,7 +39,7 @@ class TvFragment : BaseFragment(), TvShowListener {
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.rvTvShow.apply {
-            layoutManager = GridLayoutManager(requireContext(), 2 )
+            layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = TvShowAdapters(this@TvFragment)
         }
 
@@ -48,14 +48,14 @@ class TvFragment : BaseFragment(), TvShowListener {
     override fun observableInit() {
         viewModel.getTvShows().observe(viewLifecycleOwner) { tvDatas ->
             if (tvDatas != null) {
-                when(tvDatas.status) {
+                when (tvDatas.status) {
                     Status.LOADING -> {
                         binding.pbTvshow.visibility = View.VISIBLE
                     }
                     Status.SUCCESS -> {
                         binding.pbTvshow.visibility = View.GONE
                         binding.rvTvShow.adapter?.let {
-                            when(it) {
+                            when (it) {
                                 is TvShowAdapters -> {
                                     it.submitList(tvDatas.data)
                                     it.notifyDataSetChanged()
@@ -77,8 +77,8 @@ class TvFragment : BaseFragment(), TvShowListener {
     }
 
     override fun onItemClicked(data: TvShowEntity) {
-            startActivity(Intent(requireContext(),DetailTvActivity::class.java).also {
-                it.putExtra(DetailTvActivity.TV_KEY_EXTRA,data.tvId)
-            })
+        startActivity(Intent(requireContext(), DetailTvActivity::class.java).also {
+            it.putExtra(DetailTvActivity.TV_KEY_EXTRA, data.tvId)
+        })
     }
 }

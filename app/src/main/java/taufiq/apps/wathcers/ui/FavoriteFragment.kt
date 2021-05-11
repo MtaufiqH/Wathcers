@@ -38,9 +38,7 @@ class FavoriteFragment : BaseFragment() {
         binding.tabLayout.isTabIndicatorFullWidth = true
     }
 
-    override fun observableInit() {
-        // later
-    }
+    override fun observableInit() = Unit
 
     companion object {
         private val TAB_TITLES = arrayOf(
