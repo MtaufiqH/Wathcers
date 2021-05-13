@@ -104,4 +104,19 @@ class TmdbRepositoryTest {
         assertEquals(listTvShow.size.toLong(), tvShowEntity.data?.size?.toLong())
     }
 
+    @Test
+    fun updateFavoriteMovie(){
+        doNothing().`when`(localData).setFavoriteMovie(movie)
+        tmdbRepository.setFavoriteMovie(movie)
+        verify(localData, times(1)).setFavoriteMovie(movie)
+    }
+
+    @Test
+    fun updateFavoriteTvShow(){
+        doNothing().`when`(localData).setFavoriteTvShow(tvShow)
+        tmdbRepository.setFavoriteTvShow(tvShow)
+        verify(localData, times(1)).setFavoriteTvShow(tvShow)
+    }
+
+
 }

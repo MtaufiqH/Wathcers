@@ -45,7 +45,6 @@ class MainActivityTest {
         onView(withId(R.id.bottomNavigationView)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_movies)).apply {
             check(matches(isDisplayed()))
-            perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(sampleMovie.size))
             perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         }
 
@@ -64,10 +63,6 @@ class MainActivityTest {
         onView(withId(R.id.menu_tv)).perform(click())
         onView(withId(R.id.rv_tv_show)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_tv_show)).apply {
-            perform(
-                RecyclerViewActions
-                    .scrollToPosition<RecyclerView.ViewHolder>(sampleTvShow.size)
-            )
             perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         }
 
@@ -84,6 +79,10 @@ class MainActivityTest {
     fun _3loadMovies() {
         onView(withId(R.id.rv_movies)).apply {
             check(matches(isDisplayed()))
+            perform(
+                RecyclerViewActions
+                    .scrollToPosition<RecyclerView.ViewHolder>(sampleTvShow.size)
+            )
             perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         }
         onView(withId(R.id.iv_backdrop)).check(matches(isDisplayed()))
@@ -99,6 +98,10 @@ class MainActivityTest {
         onView(withId(R.id.menu_tv)).perform(click())
         onView(withId(R.id.rv_tv_show)).apply {
             check(matches(isDisplayed()))
+            perform(
+                RecyclerViewActions
+                    .scrollToPosition<RecyclerView.ViewHolder>(sampleMovie.size)
+            )
             perform(
                 RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                     0,

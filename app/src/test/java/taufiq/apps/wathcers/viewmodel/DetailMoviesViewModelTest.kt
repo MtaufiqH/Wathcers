@@ -3,15 +3,21 @@ package taufiq.apps.wathcers.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import com.nhaarman.mockitokotlin2.doNothing
 import com.nhaarman.mockitokotlin2.verify
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.times
 import org.mockito.junit.MockitoJUnitRunner
 import taufiq.apps.wathcers.data.db.movie.MovieEntity
 import taufiq.apps.wathcers.repo.TmdbRepository
@@ -61,5 +67,14 @@ class DetailMoviesViewModelTest {
         movieViewModel.getMovieDetail(movieId).observeForever(observerMovie)
         verify(observerMovie).onChanged(movieSample)
     }
+
+    @Test
+    fun `update indicator favorite movie into favorite to true`(){
+        doNothing().`when`(tmdbRepository).setFavoriteMovie(movieSample)
+        tmdbRepository.setFavoriteMovie(movieSample)
+        verify(tmdbRepository, times(1)).setFavoriteMovie(movieSample)
+    }
+
+
 
 }

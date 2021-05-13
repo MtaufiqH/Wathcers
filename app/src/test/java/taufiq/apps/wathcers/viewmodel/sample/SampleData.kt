@@ -82,12 +82,12 @@ object SampleData {
                 "/b0WmHGc8LHTdGCVzxRb3IBMur57.jpg",
                 7.0,"2021-03-19", false
             ),
-            TvShowEntity(0, 88396, "", "", "", "", 1.0, "",false),
-            TvShowEntity(0, 88396, "", "", "", "", 1.0, "", false),
-            TvShowEntity(0, 88396, "", "", "", "", 1.0, "",false),
-            TvShowEntity(0, 88396, "", "", "", "", 1.0, "",false),
-            TvShowEntity(0, 88396, "", "", "", "", 1.0, "", false),
-            TvShowEntity(0, 88396, "", "", "", "", 1.0, "",false),
+            TvShowEntity(1, 1, "", "", "", "", 1.0, "",false),
+            TvShowEntity(2, 2, "", "", "", "", 1.0, "", false),
+            TvShowEntity(3, 3, "", "", "", "", 1.0, "",false),
+            TvShowEntity(4, 4, "", "", "", "", 1.0, "",false),
+            TvShowEntity(5, 5, "", "", "", "", 1.0, "", false),
+            TvShowEntity(6, 6, "", "", "", "", 1.0, "",false),
         )
     }
 
