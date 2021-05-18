@@ -66,9 +66,9 @@ class TvViewModelDetailTest {
     }
 
     @Test
-    fun `update indicator favorite tv show into favorite to true`(){
+    fun `setFavoriteTvShow must success call set favorite from repository`(){
         doNothing().`when`(tmdbRepository).setFavoriteTvShow(tvSample)
-        tmdbRepository.setFavoriteTvShow(tvSample)
+        tvViewModel.setFavoritTvShow(tvSample)
         verify(tmdbRepository, Mockito.times(1)).setFavoriteTvShow(tvSample)
     }
 }

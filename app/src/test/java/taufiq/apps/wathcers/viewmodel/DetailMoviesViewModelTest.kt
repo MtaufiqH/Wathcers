@@ -69,9 +69,9 @@ class DetailMoviesViewModelTest {
     }
 
     @Test
-    fun `update indicator favorite movie into favorite to true`(){
+    fun `setFavoriteMovie must success call set favorite from repository`(){
         doNothing().`when`(tmdbRepository).setFavoriteMovie(movieSample)
-        tmdbRepository.setFavoriteMovie(movieSample)
+        movieViewModel.setMovieFavorite(movieSample)
         verify(tmdbRepository, times(1)).setFavoriteMovie(movieSample)
     }
 
