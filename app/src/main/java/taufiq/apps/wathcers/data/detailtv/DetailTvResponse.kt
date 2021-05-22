@@ -2,6 +2,7 @@ package taufiq.apps.wathcers.data.detailtv
 
 
 import com.google.gson.annotations.SerializedName
+import taufiq.apps.wathcers.data.detailmovie.Genre
 
 data class DetailTvResponse(
     @SerializedName("backdrop_path")
@@ -9,7 +10,7 @@ data class DetailTvResponse(
     @SerializedName("first_air_date")
     val firstAirDate: String,
     @SerializedName("genres")
-    val genres: List<Genres>,
+    val genres: List<Genre>,
     @SerializedName("homepage")
     val homepage: String,
     @SerializedName("id")

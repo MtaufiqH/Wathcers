@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Wathcers</string>
-    <string name="tab_text_1">Movie</string>
-    <string name="tab_text_2">Tv Show</string>
+    <string name="tab_text_1">Movies</string>
+    <string name="tab_text_2">Tv Shows</string>
     <string name="movie_image">movie image</string>
     <string name="overview">Overview</string>
     <string name="book_now">Book now!</string>
@@ -13,4 +13,9 @@
     <string name="summary">Summary</string>
     <string name="status">Status</string>
     <string name="date_air">%s - %s</string>
+    <string name="favorite">Favorite</string>
+    <string name="movies">Movies</string>
+    <string name="tv_show">Tv Show</string>
+    <string name="check_internet">Check Your Internet Connections</string>
+    <string name="favorite_button">favorite button</string>
 </resources>

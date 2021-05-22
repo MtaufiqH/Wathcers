@@ -1,16 +1,8 @@
 package taufiq.apps.wathcers.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import taufiq.apps.wathcers.data.TvShowResult
-import taufiq.apps.wathcers.repo.MovieRepositoryImpl
-import taufiq.apps.wathcers.utils.EspressoIdlingResource
+import taufiq.apps.wathcers.repo.TmdbRepository
 import javax.inject.Inject
 
 /**
@@ -18,7 +10,7 @@ import javax.inject.Inject
  *
  */
 @HiltViewModel
-class TvViewModel @Inject constructor(private val repository: MovieRepositoryImpl) : ViewModel() {
+class TvViewModel @Inject constructor(private val repository: TmdbRepository) : ViewModel() {
 
     fun getTvShows() = repository.getTvShow()
 
